@@ -1,0 +1,78 @@
+---
+const { question, answer, href="#", target="_self"} = Astro.props;
+---
+
+<!-- Accordion Container -->
+<div class="max-w-md lg:max-w-lg mx-auto overflow-hidden">
+  <!-- Accordion Header -->
+  <div class="accordion-header flex items-center justify-between md:px-5 py-4 cursor-pointer">
+
+    <!-- Question -->
+    <span class="font-body text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop text-sec_be-950 font-semibold max-w-sm">{question}</span>
+
+    <!-- Icon -->
+    <span class="accordion-icon transition-transform duration-300 text-sec_be-950 lg:mr-6">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" width="24" height="24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor">
+        <path d="M12 5l0 14"></path>
+        <path d="M5 12l14 0"></path>
+      </svg>
+    </span>
+  </div>
+
+  <!-- Accordion Content -->
+  <div class="accordion-content overflow-hidden max-h-0 transition-[max-height] duration-700 ease-in-out font-body bg-sec_be-500 p-xxxs">
+    <div class="font-body text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop text-sec_bl_950 font-light space-y-xs px-4 max-w-xl md:pr-lg">
+      {answer} <a href={href} target={target}><slot /></a>
+    </div>
+  </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const headers = document.querySelectorAll(".accordion-header");
+  
+      headers.forEach((header) => {
+        header.addEventListener("click", () => {
+          const content = header.nextElementSibling;
+          const icon = header.querySelector(".accordion-icon");
+  
+          // LUK ALLE ANDRE ACCORDIONS
+          headers.forEach((otherHeader) => {
+            const otherContent = otherHeader.nextElementSibling;
+            const otherIcon = otherHeader.querySelector(".accordion-icon");
+  
+            if (otherHeader !== header && otherContent.style.maxHeight) {
+              // Luk
+              otherContent.style.maxHeight = null;
+  
+              // Genskab lodret linje (plus)
+              if (!otherIcon.querySelector('path[d="M12 5l0 14"]')) {
+                const newPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                newPath.setAttribute("d", "M12 5l0 14");
+                otherIcon.querySelector("svg").insertBefore(newPath, otherIcon.querySelector("svg").firstChild);
+              }
+            }
+          });
+  
+          // TOGGLE DEN AKTUELLE
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            // Tilføj lodret linje (plus)
+            if (!icon.querySelector('path[d="M12 5l0 14"]')) {
+              const newPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+              newPath.setAttribute("d", "M12 5l0 14");
+              icon.querySelector("svg").insertBefore(newPath, icon.querySelector("svg").firstChild);
+            }
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            // Fjern lodret linje (minus)
+            const verticalLine = icon.querySelector('path[d="M12 5l0 14"]');
+            if (verticalLine) {
+              verticalLine.remove();
+            }
+          }
+        });
+      });
+    });
+  </script>
+  

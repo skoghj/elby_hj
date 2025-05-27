@@ -1,0 +1,193 @@
+---
+import Link from "./Link.astro";
+---
+
+<nav class="fixed top-0 left-0 w-full z-50 bg-primary-50 shadow-sm">
+  <!-- Mobile Navigation -->
+  <div class="flex md:hidden items-center justify-between px-4 py-3 bg-primary-50 shadow-sm">
+    <!-- Burger -->
+    <button id="burger-menu" class="z-50" aria-label="Burgermenu">
+      <svg id="burger-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path d="M3 6h18M3 12h18M3 18h18"></path>
+      </svg>
+      <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-black hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <!-- Logo -->
+    <a href="/">
+      <img src="/svg/elby_logo.svg" alt="Elby logo" class="h-10" />
+    </a>
+
+    <!-- CTA -->
+    <div class="block lg:hidden">
+      <Link href="../bestil" variant="icon" size="standard" icon="/svg/loginikon.svg" />
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown -->
+  <div id="dropdown-overlay" class="hidden md:hidden absolute inset-x-0 top-[60px] z-40 bg-primary-50 shadow-lg px-4 py-4" x-data="{ openDropdown: false }">
+    <div class="bg-primary-50 px-4 py-4">
+      <ul class="space-y-6 text-accent-500 font-semibold text-sm">
+        <!-- Dropdown toggler -->
+        <li class="relative group">
+          <button @click="openDropdown = !openDropdown" class="relative flex flex-col items-start w-full">
+            <div class="flex items-center justify-between w-full">
+              <span>Ladeløsninger</span>
+              <svg :class="openDropdown ? 'rotate-180' : ''" class="ml-1 h-8 w-8 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
+              </svg>
+            </div>
+            <!-- Underbar animation line -->
+            <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 hidden md:inline-block"></span>
+          </button>
+          <!-- Dropdown content (mobile-friendly) -->
+          <div x-show="openDropdown" x-transition class="mt-2 bg-primary-50 text-accent-500 z-20">
+            <ul class="space-y-1 w-full">
+              <li class="hover:bg-acc_yel-500 px-3 py-2 rounded-[4px]">
+                <a href="/boligforening?tab=bolig" class="block font-medium text-neutral-900">Elby til Boligforeninger</a>
+              </li>
+              <li class="hover:bg-acc_yel-500 px-3 py-2 rounded-[4px]">
+                <a href="/boligforening?tab=ejendom" class="block font-medium text-neutral-900">Elby til Ejendomsselskaber</a>
+              </li>
+              <li class="hover:bg-acc_yel-500 px-3 py-2 rounded-[4px]">
+                <a href="/sleeve" class="block font-medium text-neutral-900">Elby Fortovsskinne</a>
+              </li>
+              <li class="hover:bg-acc_yel-500 px-3 py-2 rounded-[4px]">
+                <a href="/ladestander" class="block font-medium text-neutral-900">Elby Ladestander</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Other normal links -->
+        <li class="relative group">
+          <a href="/inwall">
+            <span>Sådan virker Elby</span>
+            <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+          </a>
+        </li>
+        <li class="relative group">
+          <a href="/omelby">
+            <span>Om Elby</span>
+            <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+          </a>
+        </li>
+        <li class="relative group">
+          <a href="/kontakt">
+            <span>Kontakt</span>
+            <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Desktop Navigation -->
+  <div class="hidden md:flex items-center justify-between px-4 lg:px-8 xl:px-12 py-3 w-full bg-primary-50">
+    <!-- Left: Logo -->
+    <a href="/" class="shrink-0">
+      <img src="/svg/elby_logo.svg" alt="Elby Logo" class="h-[54px] w-auto" />
+    </a>
+
+    <!-- Center: Menu -->
+    <nav class="flex-1 mx-4">
+      <ul class="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-10 lg:gap-14 text-accent-500 font-regular text-sm">
+        <li class="relative group">
+          <span class="flex items-center font-body">
+            Ladeløsninger
+            <svg class="ml-1 mt-1 h-4 w-4 transition-transform group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
+            </svg>
+          </span>
+          <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+          <!-- Dropdown -->
+          <div class="absolute left-0 mt-2 p-xxs w-64 rounded-[4px] bg-primary-50 text-accent-500 shadow-lg z-40 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            <ul>
+              <li class="hover:bg-acc_yel-500 px-3 py-2 font-body">
+                <a href="/boligforening?tab=bolig" class="block text-neutral-900">Elby til Boligforeninger</a>
+              </li>
+              <li class="hover:bg-acc_yel-500 px-3 py-2 font-body">
+                <a href="/boligforening?tab=ejendom" class="block text-neutral-900">Elby til Ejendomsselskaber</a>
+              </li>
+              <li class="hover:bg-acc_yel-500 px-3 py-2 font-body">
+                <a href="/sleeve" class="block text-neutral-900">Elby Fortovsskinne</a>
+              </li>
+              <li class="hover:bg-acc_yel-500 px-3 py-2 font-body">
+                <a href="/ladestander" class="block text-neutral-900">Elby Ladestander</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="relative group font-body">
+          <a href="/inwall">
+            <span>Sådan virker Elby</span>
+            <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+          </a>
+        </li>
+        <li class="relative group font-body">
+          <a href="/omelby">
+            <span>Om Elby</span>
+            <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+          </a>
+        </li>
+        <li class="relative group font-body">
+          <a href="/kontakt">
+            <span>Kontakt</span>
+            <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Tablet only icon CTA -->
+    <div class="shrink-0 hidden md:block lg:hidden">
+      <Link href="../bestil" variant="icon" size="standard" icon="/svg/loginikon.svg" />
+    </div>
+    <!-- Desktop : CTA -->
+    <div class="shrink-0 hidden lg:block">
+      <Link href="../bestil" variant="cta" size="standard" icon="/svg/loginikon.svg">
+        <span>Få Elby i din bygning</span>
+      </Link>
+    </div>
+  </div>
+</nav>
+
+<!-- Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const burgerMenuBtn = document.getElementById("burger-menu");
+    const burgerIcon = document.getElementById("burger-icon");
+    const closeIcon = document.getElementById("close-icon");
+    const dropdownOverlay = document.getElementById("dropdown-overlay");
+
+    let menuOpen = false;
+
+    // Funktion til at åbne/lukke mobilmenuen
+    function toggleMenu(open) {
+      menuOpen = open;
+      dropdownOverlay.classList.toggle("hidden", !open);
+      burgerIcon.classList.toggle("hidden", open);
+      closeIcon.classList.toggle("hidden", !open);
+    }
+
+    // Klik på burger-ikon → åbn eller luk menuen
+    burgerMenuBtn.addEventListener("click", () => {
+      toggleMenu(!menuOpen);
+    });
+
+    // Når et menupunkt klikkes → luk menuen og naviger til siden
+    document.querySelectorAll("#dropdown-overlay a").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault(); // Forhindrer standard link-adfærd
+        const href = link.getAttribute("href");
+
+        toggleMenu(false); // Luk menuen
+
+        // Navigér til den ønskede side
+        window.location.href = href;
+      });
+    });
+  });
+</script>

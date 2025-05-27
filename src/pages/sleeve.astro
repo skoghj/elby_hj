@@ -1,0 +1,237 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Link from "../components/Link.astro";
+import Card from "../components/ProductCard.astro";
+import Uspsection from "../components/Uspsection.astro";
+import Splitcontent from "../components/Splitcontent.astro";
+import Dropdown from "../components/Dropdown.astro";
+import SplitcontentHero from "../components/SplitcontentHero.astro";
+import Prefooter from "../components/Prefooter.astro";
+import Textlink from "../components/Textlink.astro";
+
+const sleeveSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Elby Fortovsskinne",
+  image: ["https://elbyprojekt4.netlify.app/sleeve/sleeve_sidewalk.webp"],
+  description: "Elbys fortovsskinne er en sikker, diskret løsning til at føre ladekabler over fortovet – godkendt af flere kommuner og designet til ikke at forstyrre bymiljøet.",
+  brand: {
+    "@type": "Brand",
+    name: "Elby",
+  },
+  sku: "elby-sleeve",
+  offers: {
+    "@type": "Offer",
+    url: "https://elbyprojekt4.netlify.app/bestil/",
+    priceCurrency: "DKK",
+    price: "3.299",
+    itemCondition: "https://schema.org/NewCondition",
+    availability: "https://schema.org/InStock",
+  },
+};
+
+const sleeve = [
+  { value: "m/installation og ansøgning", label: "Med installation og ansøgning" },
+  { value: "m/installation", label: "Med installation" },
+  { value: "u/installation", label: "Uden installation" },
+];
+
+const infoCards = [
+  {
+    match: "m/installation og ansøgning",
+    price: "3.299 kr.",
+    items: [
+      { icon: "../svg/sleeve.svg", text: "2m fortovsskinne inkl. lim" },
+      { icon: "../svg/installation.svg", text: "1-2 dages Installation" },
+      { icon: "../svg/ansogning.svg", text: "Ansøgning til kommunen" },
+    ],
+  },
+  {
+    match: "m/installation",
+    price: "2.799 kr.",
+    items: [
+      { icon: "../svg/sleeve.svg", text: "2m fortovsskinne inkl. lim" },
+      { icon: "../svg/installation.svg", text: "1-2 dages Installation" },
+      { icon: "../svg/fragt.svg", text: "Fri fragt" },
+    ],
+  },
+  {
+    match: "u/installation",
+    price: "999 kr.",
+    items: [
+      { icon: "../svg/sleeve.svg", text: "2m fortovsskinne inkl. lim" },
+      { icon: "../svg/montagevejledning.svg", text: "Montagevejledning" },
+      { icon: "../svg/fragt.svg", text: "Fri fragt" },
+    ],
+  },
+];
+
+const kommune = [
+  { value: "https://www.kk.dk", label: "Københavns Kommune" },
+  { value: "https://www.frederiksberg.dk", label: "Frederiksberg Kommune" },
+  { value: "https://www.odense.dk", label: "Odense Kommune" },
+  { value: "https://frederikshavn.dk", label: "Frederikshavn Kommune" },
+  { value: "https://gentofte.dk", label: "Gentofte Kommune" },
+  { value: "https://gladsaxe.dk", label: "Gladsaxe Kommune" },
+  { value: "https://helsingor.dk", label: "Helsingør Kommune" },
+  { value: "https://rudersdal.dk", label: "Rudersdal Kommune" },
+  { value: "https://silkeborg.dk", label: "Silkeborg Kommune" },
+  { value: "https://www.herning.dk", label: "Herning Kommune" },
+  { value: "https://holbaek.dk", label: "Holbæk Kommune" },
+  { value: "https://www.taarnby.dk", label: "Taarnby Kommune" },
+];
+---
+
+<MainLayout title="Elby-sleeve" description="Elby fortovsskinne gør elbilopladning mulig selv på smalle fortove. Vælg mellem modeller med eller uden installation og ansøgning – nem, sikker og diskret løsning." ogtitle="Elby Fortovsskinne – Gør plads til elbilen" ogdescription="Se hvordan Elbys fortovsskinne løser problemet med kabler på offentlige fortove. En elegant løsning, testet i bymiljøet og godkendt i flere kommuner.">
+  <!-- Hero Section -->
+  <div id="1_sleevehero" class="bg-sec_be-500 px-4 mt-l md:mt-0">
+    <SplitcontentHero title="ELBY Fortovsskinne" text="Er fortovet i vejen for din drøm om at køre elbil? Elby har løst problemet med en fortovsskinne i et kompakt og funktionelt design." dropdownOptions={sleeve} dropdownBinding="m/installation og ansøgning" infoCards={infoCards} buttonText="Få Elby fortovskinne" buttonLink="/produktbestilling" rightMediaType="video" rightMediaSrc="../sleeve/fortovskinne.webm" />
+  </div>
+
+  <!-- USP Section -->
+  <section id="2_usp_sleeve" class="bg-primary-500 fade-in-up">
+    <Uspsection header="Hvorfor få Elby fortovsskinne?" text1="1. Eliminerer snublefare - den er sikker for alle" text2="2. Kort installationstid på typisk mellem 1-2 dage" text3="3. Robust design der øger boligværdien" img1="../svg/sleeve.svg" img2="../svg/installation.svg" img3="../svg/overskudsdeling.svg" alt1="Installation ikon" alt2="Abonnement ikon" alt3="Overskudsdeling ikon" />
+  </section>
+
+  <!-- Produktkort Section -->
+  <div id="3_abc_løsning_sleeve" class="bg-sec_be-500 fade-in-up">
+    <section class="items-start justify-between max-w-7xl mx-auto p-sm gap-8xl lg:p-14 lg:py-xl">
+      <h2 class="text-center mb-md">Den rigtige løsning for borgere, byer og kommuner.</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card A -->
+        <Card
+          headerColor="bg-acc_yel-500"
+          title="Fortovsskinne"
+          buildingIcon="../svg/a.svg"
+          subtitle="m/installation og ansøgning"
+          image="../sleeve/sleevecard_a.webp"
+          pricetitle="inkl. moms"
+          price="3.299 kr"
+          linkVariant="primary"
+          buttonText="Få Elby fortorvskinne"
+          buttonLink="/produktbestilling"
+          features={[
+            {
+              icon: '<img src="../svg/sleeve.svg" class="w-12 h-12" alt="icon" />',
+              text: "2m fortovsskinne inkl. lim",
+            },
+            {
+              icon: '<img src="../svg/installation.svg" class="w-12 h-12" alt="Installationsikon" />',
+              text: "1-2 dages Installation",
+            },
+            {
+              icon: '<img src="../svg/ansogning.svg" class="w-12 h-12" alt="Ansøgningsikon" />',
+              text: "Ansøgning til kommunen",
+            },
+          ]}
+        />
+
+        <!-- Card B -->
+        <Card
+          headerColor="bg-acc_yel-500"
+          title="Fortovsskinne"
+          buildingIcon="../svg/b.svg"
+          subtitle="m/instalation."
+          image="../sleeve/sleevecard_b.webp"
+          pricetitle="inkl. moms"
+          price="2.799 kr"
+          linkVariant="secondary"
+          buttonText="Få Elby fortorvskinne"
+          buttonLink="/produktbestilling"
+          features={[
+            {
+              icon: '<img src="../svg/sleeve.svg" class="w-12 h-12" alt="icon" />',
+              text: "2m fortovsskinne inkl. lim",
+            },
+            {
+              icon: '<img src="../svg/installation.svg" class="w-12 h-12" alt="Installationsikon" />',
+              text: "1-2 dages Installation",
+            },
+            {
+              icon: '<img src="../svg/fragt.svg" class="w-12 h-12" alt="Fragt ikon" />',
+              text: "Fri fragt",
+            },
+          ]}
+        />
+
+        <!-- Card C -->
+        <Card
+          headerColor="bg-acc_yel-500"
+          title="Fortovsskinne"
+          buildingIcon="../svg/c.svg"
+          subtitle="u/installation"
+          image="../sleeve/sleevecard_c.webp"
+          pricetitle="inkl. moms"
+          price="999 kr"
+          linkVariant="secondary"
+          buttonText="Få Elby fortorvskinne"
+          buttonLink="/produktbestilling"
+          features={[
+            {
+              icon: '<img src="../svg/sleeve.svg" class="w-12 h-12" alt="icon" />',
+              text: "2m fortovsskinne inkl. lim",
+            },
+            {
+              icon: '<img src="../svg/montagevejledning.svg" class="w-12 h-12" alt="Montage ikon" />',
+              text: "Montagevejledning",
+            },
+            {
+              icon: '<img src="../svg/fragt.svg" class="w-12 h-12" alt="Fragt icon" />',
+              text: "Fri fragt",
+            },
+          ]}
+        />
+      </div>
+    </section>
+  </div>
+
+  <!-- Branding Section -->
+  <section id="4_branding_sleeve" class="bg-primary-500 fade-in-up">
+    <Splitcontent img="../sleeve/sleeve_sidewalk.webp" header="Skabt til byen" text1="Elbys skinne er testet med cykler, rulleskøjter, løbehjul, kørestole, små børn, hunde, sko og høje hæle." text2="Skinnen er så lille at når skinnen er tom, kan man dårligt mærke den, når man går eller kører over den. Det eneste der kan gå i skinnen er stilethæle. Bredden på skinnens synlige rille er nemlig blot omtrent den samme som afstanden mellem almindelige brosten på gaden." text3="Når ladekablet ligger i skinnen, føles den som en naturlig del af fortovet." alt="Elby væglader i murstensvæg" linkType="text" linkText="Læs mere om Elbys vision" href="../omelby" />
+  </section>
+
+  <!-- Kommune Section -->
+  <div id="5_kommune_sleeve" class="bg-sec_be-500 fade-in-up">
+    <section class="grid grid-cols-1 md:grid-cols-2">
+      <!-- Tekstdel -->
+      <div class="w-full p-sm md:px-2xl md:py-l">
+        <h3 class="mb-xxxs pb-xxs lg:px-12">Kommuner der tillader fortovsskinner</h3>
+        <p class="mb-6 lg:px-12">Alle installationer og alt arbejde på offentlige fortove kræver kommunal tilladelse.</p>
+
+        <div class="mb-m relative lg:px-12">
+          <Dropdown options={kommune} placeholder="Vælg kommune..." linkOnSelect={true} />
+        </div>
+
+        <div class="mb-m lg:px-12">
+          <h4 class="pb-xxs">Få flere kommuner skrevet på</h4>
+          <p>Skriv til din kommune og fortæl om dit behov for en fortovsskinne – det kommer både dig selv og dine naboer til gode, at der er styr på ladekablet.</p>
+          <div class="mt-xxs"><Textlink linkText="Download materiale til myndingshedsansøgning" href="https://cdn.prod.website-files.com/664744ed799478884900e1b3/67f4d8fc8deffd49b104ab57_Elby_Fortovsskinne%20Myndighedsark%20DK.pdf" /></div>
+        </div>
+
+        <div class="mb-m lg:px-12">
+          <h4 class="pb-xxs">Har du brug for hjælp?</h4>
+          <p>Vi har stor erfaring med dialogen med kommunerne, og vi hjælper dig gerne med ansøgningen.</p>
+        </div>
+
+        <div class="lg:px-12">
+          <Link href="/kontakt" variant="primary" size="full">Kontakt os</Link>
+        </div>
+      </div>
+
+      <!-- Kortdel -->
+      <div class="hidden md:block w-full h-full bg-neu_dg-200 relative p-sm">
+        <img src="../svg/danmarkskort.svg" alt="Danmarkskort med kommune punkter" class="w-full h-auto lg:p-l lg:pr-3xl my-auto" />
+      </div>
+    </section>
+  </div>
+
+  <div class="bg-primary-500 fade-in-up">
+    <Prefooter header="Vil du vide mere om Elby?" buttonText="Læs om Elbys vision" buttonlink="/omelby" linkVariant="secondary" />
+  </div>
+
+  <!-- Prefooter grafik -->
+  <div id="6_bygrafik_sleeve" class="">
+    <img src="../svg/bygrafik.svg" alt="Kbh skyline grafik" class="w-full h-auto" />
+  </div>
+</MainLayout>

@@ -1,0 +1,182 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Card from "../components/ProductCard.astro";
+import Uspsection from "../components/Uspsection.astro";
+import Splitcontent from "../components/Splitcontent.astro";
+import SplitcontentRight from "../components/SplitcontentRight.astro";
+import Prefooter from "../components/Prefooter.astro";
+import SplitcontentHero from "../components/SplitcontentHero.astro";
+
+const ladestanderSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Elby Ladestander",
+  image: ["https://elbyprojekt4.netlify.app/stander/ladestander4.webp"],
+  description: "Elbys ladestander fås i træ, beton og stål – designet til at falde i ét med byen og installeres hurtigt. Velegnet til boligforeninger og erhverv, og kan øge værdien af ejendommen.",
+  brand: {
+    "@type": "Brand",
+    name: "Elby",
+  },
+  sku: "elby-ladestander",
+  offers: {
+    "@type": "Offer",
+    url: "https://elbyprojekt4.netlify.app/bestil/",
+    priceCurrency: "DKK",
+    price: "39.999",
+    itemCondition: "https://schema.org/NewCondition",
+    availability: "https://schema.org/InStock",
+  },
+};
+
+const materiale = [
+  { value: "Ladestander i træ", label: "Elby Ladestander i træ" },
+  { value: "Ladestander i beton", label: "Elby Ladestander i beton" },
+  { value: "Ladestander i stål", label: "Elby Ladestander i stål" },
+];
+
+const infoCards = [
+  {
+    match: "Ladestander i træ",
+    price: "39.999 kr.",
+    items: [
+      { icon: "../svg/layers.svg", text: "Egetræ" },
+      { icon: "../svg//maaler2.svg", text: "Mål: 77x22x22cm" },
+      { icon: "../svg/installation.svg", text: "Installation 1-2 dage" },
+    ],
+  },
+  {
+    match: "Ladestander i beton",
+    price: "43.999 kr.",
+    items: [
+      { icon: "../svg/layers.svg", text: "Beton" },
+      { icon: "../svg/maaler2.svg", text: "Mål: 60x20x20cm" },
+      { icon: "../svg/installation.svg", text: "Installation 1-2 dage" },
+    ],
+  },
+  {
+    match: "Ladestander i stål",
+    price: "49.999 kr.",
+    items: [
+      { icon: "../svg/layers.svg", text: "Stål" },
+      { icon: "../svg/maaler2.svg", text: "Mål: 55x22x22cm" },
+      { icon: "../svg/installation.svg", text: "Installation 1-2 dage" },
+    ],
+  },
+];
+---
+
+<MainLayout title="Elby Ladestander" description="Elby tilbyder smukke og bæredygtige ladestandere i træ, beton og stål. Hurtig installation og design med respekt for byen. Se priser og bestil din ladestander i dag." ogtitle="Elby Ladestander – Stilfuld opladning til byen" ogdescription="Vælg mellem Elby ladestandere i træ, beton eller stål – designet til at passe ind i bybilledet. Bestil nemt din egen ladestander med hurtig installation.">
+  <div id="1_ladestanderhero" class="bg-sec_be-500 px-4 mt-l md:mt-0">
+    <SplitcontentHero title="ELBY Ladestander" text="Med Elby ladestander får du en helt ny måde at tænke ladestander på." dropdownOptions={materiale} dropdownBinding="Ladestander i træ" infoCards={infoCards} buttonText="Få Elby ladestander" buttonLink="/produktbestilling" rightMediaType="video" rightMediaSrc="../stander/ladestander.webm" />
+  </div>
+
+  <section id="2_usp_ladestander" class="bg-primary-500 fade-in-up">
+    <Uspsection header="Hvorfor vælge Elby ladestander?" text1="1. Nytænkende ladestander, der er nænsom for byen" text2="2. Kort installationstid på typisk mellem 1-2 dage" text3="3. Din private ladestander, der kommer i træ, beton eller stål" img1="../svg/nytaenkIcon.svg" img2="../svg/installation.svg" img3="../svg/ladestander2.svg" alt1="Materiale ikon" alt2="Måler ikon" alt3="Installationsikon" />
+  </section>
+
+  <section id="3_branding_ladestander" class="bg-sec_be-500 fade-in-up">
+    <Splitcontent img="../stander/elbyskilt.webp" header="Elby – Ladestander med respekt for byen" text1="I Elby tror vi på, at grøn omstilling kun virker, hvis den også giver mening for mennesker. Derfor designer vi ladeinfrastruktur, der ikke bare er effektiv – men også folkelig, smuk og nænsom for byen." text2="Vores ladestandere falder i ét med omgivelserne og bliver en naturlig del af gadebilledet. De er skabt til at patinere, ikke forstyrre – og med løsninger, der både kan være næsten usynlige eller æstetisk integrerede, tager vi hensyn til både fortov, fællesskab og fremtid." alt="Elby ladestander installeret i indreby ved Thorvalsens museum" href="../omelby" linkText=" Læs mere om Elby" />
+  </section>
+
+  <section id="4_erhverv_ladestander" class="bg-primary-500 fade-in-up">
+    <SplitcontentRight img="../stander/ladestander4.webp" header="Elby ladestander til Erhverv" text1="Uanset om I er en boligforening, offentlig virksomhed eller anden form for erhverv finder vi den rigtige ladeløsning til jer." text2="Vi tilpasser løsningen efter jeres behov – og vi hjælper gerne hele vejen fra installation til ladeboksen er klar til brug." alt="Nærbilled af Elby ladestander med ladekabel" buttonText="Bliv ringet op og hør mere" buttonlink="/kontakt" linkVariant="secondary" />
+  </section>
+
+  <div id="5_tbs_løsning_ladestander" class="bg-sec_be-500 fade-in-up">
+    <section class="items-start justify-between max-w-7xl mx-auto p-sm gap-4xl lg:p-14 lg:py-xl">
+      <h2 class="text-center pb-md">Den rigtige løsning for dig og din bopæl.</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-16">
+        <Card
+          headerColor="bg-acc_yel-500"
+          title="Ladestander i træ"
+          buildingIcon="../svg/t.svg"
+          subtitle="Monteret, ekskl. evt. <br/> gravearbejde og kabelføring"
+          image="../stander/ladestander_wood.webp"
+          pricetitle="Pris inkl. moms"
+          price="39.999 kr."
+          linkVariant="primary"
+          buttonText="Få din ladestander i træ"
+          buttonLink="/produktbestilling"
+          features={[
+            {
+              icon: '<img src="../svg/layers.svg" class="w-12 h-12" alt="Materiale ikon" />',
+              text: "Egetræ - ladestander",
+            },
+            {
+              icon: '<img src="../svg/maaler2.svg" class="w-12 h-12" alt="Måler ikon" />',
+              text: "Mål: 77x22x22cm",
+            },
+            {
+              icon: '<img src="../svg/installation.svg" class="w-12 h-12" alt="Installationsikon" />',
+              text: "1-2 dages installation",
+            },
+          ]}
+        />
+
+        <Card
+          headerColor="bg-acc_yel-500"
+          title="Ladestander i beton"
+          buildingIcon="../svg/b.svg"
+          subtitle="Monteret, ekskl. evt. <br/> gravearbejde og kabelføring"
+          image="../stander/ladestander_beton.webp"
+          pricetitle="Pris inkl. moms"
+          price="43.999 kr."
+          linkVariant="secondary"
+          buttonText="Få din ladestander i beton"
+          buttonLink="/produktbestilling"
+          features={[
+            {
+              icon: '<img src="../svg/layers.svg" class="w-12 h-12" alt="Materiale ikon" />',
+              text: "Beton - ladestander",
+            },
+            {
+              icon: '<img src="../svg/maaler2.svg" class="w-12 h-12" alt="Måler ikon" />',
+              text: "Mål: 60x20x20cm",
+            },
+            {
+              icon: '<img src="../svg/installation.svg" class="w-12 h-12" alt="Installationsikon" />',
+              text: "1-2 dages installation",
+            },
+          ]}
+        />
+
+        <Card
+          headerColor="bg-acc_yel-500"
+          title="Ladestander i stål"
+          buildingIcon="../svg/s.svg"
+          subtitle="Monteret, ekskl. evt. <br/> gravearbejde og kabelføring"
+          image="../stander/ladestander_staal.webp"
+          pricetitle="Pris inkl. moms"
+          price="49.999 kr."
+          linkVariant="secondary"
+          buttonText="Få din ladestander i stål"
+          buttonLink="/produktbestilling"
+          features={[
+            {
+              icon: '<img src="../svg/layers.svg" class="w-12 h-12" alt="Materiale ikon" />',
+              text: "Stål - ladestander",
+            },
+            {
+              icon: '<img src="../svg/maaler2.svg" class="w-12 h-12" alt="Måler ikon" />',
+              text: "Mål: 55x22x22cm",
+            },
+            {
+              icon: '<img src="../svg/installation.svg" class="w-12 h-12" alt="Installationsikon" />',
+              text: "1-2 dages installation",
+            },
+          ]}
+        />
+      </div>
+    </section>
+  </div>
+
+  <div class="bg-primary-500 fade-in-up">
+    <Prefooter header="Vil du vide mere om Elby?" buttonText="Læs om Elbys vision" buttonlink="/omelby" linkVariant="secondary" />
+  </div>
+
+  <!-- Grafik Section prefooter -->
+  <div class="bg-primary-500">
+    <img src="../svg/bygrafik1.svg" alt="Kbh skyline grafik" class="w-full h-auto" />
+  </div>
+</MainLayout>

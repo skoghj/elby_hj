@@ -1,0 +1,312 @@
+<div class="w-full bg-primary-500" id="leadflow">
+  <div class="grid grid-cols-1 md:grid-cols-2">
+    <!-- venstre billede -->
+    <div class="hidden md:block h-[600px] md:h-[700px]">
+      <img src="../bestil.webp" alt="Elby illustration" id="rightImage" class="w-full h-full object-cover" />
+    </div>
+
+    <!-- højre leadflow -->
+    <div class="px-sm py-md flex flex-col justify-center items-center max-w-lg mx-auto">
+      <div class="charging-container"></div>
+      <!-- Container med max-width og centreret -->
+      <div class="w-full max-w-[600px]">
+        <h3 class="mb-sm" id="leadflowTitle">Se hvilken løsning fra Elby, der passer til dig</h3>
+        <div id="app" class="w-full"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { animate } from "https://cdn.skypack.dev/motion";
+
+  const questions = [
+    {
+      question: "Hvilken type lejlighed bor du i?",
+      options: [
+        { label: "Leje", icon: "../svg/leadflow_leje.svg", image: "../index/leje.webp" },
+        { label: "Andel", icon: "../svg/leadflow_andel.svg", image: "../index/andel.webp" },
+        { label: "Ejer", icon: "../svg/leadflow_ejer.svg", image: "../index/ejer.webp" },
+      ],
+    },
+    {
+      question: "Hvordan parkerer man ved jeres opgang?",
+      options: ["Parkering på gaden", "Privatparkeringsplads eller P-kælder", "Ingen parkeringspladser"],
+    },
+    {
+      question: "Er der cykelsti mellem fortov og gade?",
+      options: ["Ingen cykelsti", "Cykelsti", "Ved ikke"],
+    },
+    {
+      question: "Hvor mange fortovsfliser er der mellem bygningsmur og parkering?",
+      options: ["1 flise", "2 fliser", "3 eller flere fliser"],
+    },
+    {
+      question: "Hvad er din rolle i opgangen?",
+      options: ["Beboer", "Bestyrelsesmedlem", "Administrator eller bygningsejer"],
+    },
+  ];
+
+  const disqualifyingAnswers = ["Privatparkeringsplads eller P-kælder", "Ingen parkeringspladser", "Cykelsti", "3 eller flere fliser"];
+  const stepImages = [
+    null, // step 0 styres allerede via answers[0].image
+    "../index/leadflow_parkering.webp",
+    "../index/leadflow_cykelsti.webp",
+    "../index/leadflow_fortov.webp",
+    "../index/leadflow_person.webp",
+    "../index/leadflow_bestil.webp", // slutskærm (qualified/disqualified)
+    "../kontakt/kontakt.webp", // kontaktformular
+  ];
+
+  let step = 0;
+  const answers = [];
+  const app = document.getElementById("app");
+  const rightImg = document.querySelector("#leadflow img");
+
+  // Vi opretter progressbar-elementerne her, men indsætter dem dynamisk i render
+  const progressBarContainer = document.createElement("div");
+  progressBarContainer.id = "progressBarContainer";
+  progressBarContainer.className = "w-full h-2 bg-gray-300 rounded- overflow-hidden mt-4";
+
+  const progressBar = document.createElement("div");
+  progressBar.id = "progressBar";
+  progressBar.className = "h-2 bg-acc_yel-500 rounded w-0";
+
+  progressBarContainer.appendChild(progressBar);
+
+  function updateProgressBar() {
+    const totalSteps = questions.length;
+    if (step > 0 && step < totalSteps) {
+      progressBarContainer.style.display = "block";
+      const progressPercent = (step / totalSteps) * 100;
+      progressBar.style.width = progressPercent + "%";
+    } else {
+      progressBarContainer.style.display = "none";
+      progressBar.style.width = "0%";
+    }
+  }
+
+  function animateIn() {
+    animate("#app > *", { opacity: [0, 1], y: [20, 0] }, { duration: 0.4 });
+  }
+
+  function updateRightImage() {
+    // Sæt lav opacitet og placer billedet lidt til venstre som udgangspunkt
+    rightImg.style.opacity = 0;
+    rightImg.style.transform = "translateX(-40px)";
+
+    // Skift billedkilde med det samme
+    if (step === 0 && answers[0]) {
+      const selected = questions[0].options.find((o) => o.label === answers[0]);
+      if (selected) rightImg.src = selected.image;
+    } else if (step > 0 && stepImages[step]) {
+      rightImg.src = stepImages[step];
+    } else {
+      rightImg.src = "../index/leadflow_mand.webp"; // fallback
+    }
+
+    // Vent til billedet er loadet, så vi ikke animerer for tidligt
+    rightImg.onload = () => {
+      animate(rightImg, { opacity: [0, 1], x: [-40, 0] }, { duration: 0.5, easing: "ease-out" });
+    };
+  }
+
+  function render() {
+    app.innerHTML = "";
+    updateRightImage();
+
+    const q = questions[step];
+
+    if (step < questions.length) {
+      const container = document.createElement("div");
+      container.className = "max-w-[600px] mx-auto";
+
+      if (step === 0) {
+        container.innerHTML = `
+     
+          <h2 class="text-lg font-body font-semibold mb-4">${q.question}</h2>
+          <div id="optionSelector" class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            ${q.options
+              .map(
+                (opt) => `
+              <div class="optionSelector cursor-pointer flex flex-col items-center shadow bg-acc-primary-500 p-4 rounded transition border-2 border-transparent hover:border-acc_yel-500" data-answer="${opt.label}">
+                <img src="${opt.icon}" alt="${opt.label}" class="w-16 h-16 mb-2 object-contain" />
+                <span>${opt.label}</span>
+              </div>
+            `
+              )
+              .join("")}
+          </div>
+    <button id="firstNextBtn" class="w-full bg-acc_yel-500 text-sec_bl-950 font-semibold py-xs mt-xxs rounded-full hover:shadow-[inset_30rem_0_0_0] hover:shadow-acc_gr-500 duration-[200ms,500ms] transition-[color,box-shadow]">
+  Se om du kan få Elby 
+</button>
+
+        `;
+        app.appendChild(container);
+
+        const nextBtn = container.querySelector("#firstNextBtn");
+        nextBtn.classList.remove("hidden");
+
+        container.querySelectorAll(".optionSelector").forEach((el) => {
+          el.addEventListener("click", () => {
+            container.querySelectorAll(".optionSelector").forEach((o) => o.classList.remove("selected"));
+            el.classList.add("selected");
+            answers[0] = el.dataset.answer;
+            updateRightImage();
+          });
+        });
+
+        nextBtn.addEventListener("click", () => {
+          if (!answers[0]) {
+            alert("Vælg venligst en mulighed før du fortsætter");
+            return;
+          }
+          // Skjul overskriften
+          document.getElementById("leadflowTitle").style.display = "none";
+
+          step++;
+          render();
+        });
+
+        // Ingen progressbar på step 0
+      } else {
+        // Step > 0: spørgsmål med tilbage-knap og progressbar UNDER tilbageknappen
+        container.innerHTML = `
+          <h2 class="text-lg font-body font-semibold mb-4">${q.question}</h2>
+          <div class="space-y-2">
+            ${q.options
+              .map(
+                (opt) => `
+              <button class="w-full text-left border-black shadow bg-primary-500 hover:bg-acc_yel-500 px-4 py-2 rounded-sm transition" data-answer="${opt}">${opt}</button>
+            `
+              )
+              .join("")}
+          </div>
+          <button id="backBtn" class="mt-xs text-sec_bl-300 flex items-center gap-1">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+  </svg>
+  Tilbage
+</button>
+        `;
+
+        app.appendChild(container);
+
+        container.querySelectorAll("[data-answer]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            answers[step] = btn.dataset.answer;
+            step++;
+            render();
+          });
+        });
+
+        container.querySelector("#backBtn").addEventListener("click", () => {
+          step--;
+          render();
+        });
+
+        // Indsæt progressbar lige under tilbageknappen
+        container.appendChild(progressBarContainer);
+        updateProgressBar();
+      }
+    } else if (step === questions.length) {
+      // Slutskærm med tilbageknap OG progressbar skjult
+      const hasDisqualifying = answers.some((a) => disqualifyingAnswers.includes(a));
+      const container = document.createElement("div");
+      container.className = "max-w-[600px] mx-auto";
+
+      if (hasDisqualifying) {
+        container.innerHTML = `
+          <p class="text-2xl font-bold font-body mb-4">Vi har brug for flere oplysninger</p>
+          <p class="text-gray-700 mb-4">Vi mangler lidt information for at kunne give dig den bedste løsning.</p>
+    
+        `;
+      } else {
+        container.innerHTML = `
+          <p class="text-2xl font-body font-bold mb-4">Du er klar til Elby!</p>
+          <p class="text-gray-700 mb-4">Fantastisk! Send os dine kontaktoplysninger, så kontakter vi dig for hurtigt at komme i gang.</p>
+        `;
+      }
+
+      container.innerHTML += `
+        <button id="continueBtn" class="w-full font-semibold bg-acc_yel-500 text-black py-xs mt-xxs rounded-full  hover:shadow-[inset_30rem_0_0_0] hover:shadow-acc_gr-500 duration-[200ms,500ms] transition-[color,box-shadow]">Indtast dine kontaktoplysninger</button>
+       <button id="backBtn" class="mt-xs text-sec_bl-300 flex items-center gap-1">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+  </svg>
+  Tilbage
+</button>
+      `;
+
+      app.appendChild(container);
+
+      container.querySelector("#continueBtn").addEventListener("click", () => {
+        step++;
+        render();
+      });
+
+      container.querySelector("#backBtn").addEventListener("click", () => {
+        step--;
+        render();
+      });
+
+      // Skjul progressbar på slutskærm
+      progressBarContainer.style.display = "none";
+    } else if (step === questions.length + 1) {
+      // Kontaktformular
+      const form = document.createElement("div");
+      form.className = "max-w-[600px] mx-auto";
+      form.innerHTML = `
+        <h2 class="text-lg font-body font-semibold mb-4">Indtast dine kontaktoplysninger</h2>
+        <form id="contactForm" class="space-y-4">
+          <input type="text" placeholder="Navn" class="w-full border p-xxs rounded-sm" required />
+          <input type="email" placeholder="Email" class="w-full border p-xxs rounded-sm" required />
+          <input type="tel" placeholder="Telefonnummer" class="w-full border p-xxs rounded-sm" />
+          <textarea placeholder="Evt. kommentar" class="w-full border p-xxs rounded-sm"></textarea>
+          <button type="submit" class="w-full font-semibold bg-acc_yel-500 text-black py-xs mt-xxs rounded-full hover:shadow-[inset_30rem_0_0_0] hover:shadow-acc_gr-500 duration-[200ms,500ms] transition-[color,box-shadow]"">Indsend</button>
+        </form>
+      <button id="backBtn" class="mt-xs text-sec_bl-300 flex items-center gap-1">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+  </svg>
+  Tilbage
+</button>
+      `;
+
+      app.appendChild(form);
+
+      form.querySelector("#contactForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        step++;
+        render();
+      });
+
+      form.querySelector("#backBtn").addEventListener("click", () => {
+        step--;
+        render();
+      });
+
+      // Skjul progressbar på kontaktformular
+      progressBarContainer.style.display = "none";
+    } else {
+      // Slutskærm efter form
+      app.innerHTML = `
+    
+      <div class="flex flex-col mt-lg items-center text-center">
+           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-36 mx-auto text-acc_yel-700 pb-xs">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z"></path>
+          </svg>
+        <p class="text-2xl font-bold ">Tak for din henvendelse!</p>
+        <p>Vi vender tilbage hurtigst muligt.</p>
+      </div>
+  
+      `;
+      // Skjul progressbar på slutskærm
+      progressBarContainer.style.display = "none";
+    }
+
+    animateIn();
+  }
+
+  render();
+</script>

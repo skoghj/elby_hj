@@ -1,0 +1,133 @@
+---
+
+---
+
+<div class="flex flex-col w-full">
+  <div class="bg-neu_dg-500 text-sec_bl-950 px-sm py-md md:p-md lg:px-xl lg:py-s">
+    <div class="grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-sm justify-between items-start w-full">
+      <!-- Kontakt Section -->
+      <div class="flex flex-col items-start">
+        <img src="../svg/elby_logo.svg" alt="Elby logo" class="lg:h-l pb-xs" />
+
+        <div class="flex flex-col items-start pb-xs text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop space-y-1">
+          <p>Elby Aps</p>
+          <p>Islands Brygge 27</p>
+          <p>2300 København S</p>
+        </div>
+
+        <div class="flex flex-col items-start text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop space-y-1">
+          <p>CVR. 43151436</p>
+          <p>hej@elby.dk</p>
+        </div>
+      </div>
+
+      <!-- Navigation Section 1 -->
+      <div class="flex flex-col items-start font-body text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop space-y-xs">
+        <p class="text-body-lg md:text-body-lg-tablet font-semibold lg:text-body-lg-tablet pb-xxs">Ladeløsning til byerne</p>
+        <a href="/inwall" class="relative inline-block font-medium group">
+          <span> Sådan virker Elbys løsning </span>
+          <span class="absolute left-0 bottom-0 w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+        </a>
+        <a href="/boligforening?tab=bolig" class="relative font-medium inline-block group">
+          <span>Til boligforeningen</span>
+          <span class="absolute left-0 bottom-0 w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+        </a>
+        <a href="/boligforening?tab=ejendom" class="relative font-medium inline-block group">
+          <span>Til ejendomsselskabet</span>
+          <span class="absolute left-0 bottom-0 w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+        </a>
+        <a href="sleeve" class="relative inline-block font-medium group">
+          <span>Fortovsskinnen</span>
+          <span class="absolute left-0 bottom-0 w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+        </a>
+        <a href="https://apps.apple.com/dk/app/elby-the-citys-ev-charger/id6444045723" class="relative font-medium inline-block group">
+          <span>Download app</span>
+          <span class="absolute left-0 bottom-0 w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+        </a>
+      </div>
+      <!-- Navigation Section 2 -->
+      <div class="flex flex-col items-start font-body text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop space-y-xs">
+        <p class="text-body-lg md:text-body-lg-tablet lg:text-body-lg-tablet font-semibold pb-xxs">Om Elby</p>
+        <a href="/omelby" class="relative inline-block font-medium group">
+          <span>Visionen og holdet bag</span>
+          <span class="absolute left-0 bottom-0 w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+        </a>
+        <a href="/kontakt" class="relative inline-block font-medium group">
+          <span>Kontakt</span>
+          <span class="absolute left-0 bottom-0 w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+        </a>
+        <a href="/omelby#5_faq_omelby" class="relative font-medium inline-block group">
+          <span>FAQ</span>
+          <span class="absolute left-0 bottom-0 w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+        </a>
+        <a href="mailto:hej@elby.com" class="relative font-medium inline-block group">
+          <span>Support</span>
+          <span class="absolute left-0 bottom-0 w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+        </a>
+      </div>
+
+      <!-- Nyhedsbrev Section -->
+      <div class="flex flex-col items-start font-body text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop space-y-1">
+        <p class="text-body-lg md:text-body-lg-tablet lg:text-body-lg-tablet font-semibold pb-xs">Få nyt om Elby</p>
+        <!-- Nyhedsbrev form -->
+        <form id="newsletterForm" class="flex mt-2 w-full">
+          <label for="newsletterEmail" class="sr-only">Email til nyhedsbrev</label>
+          <input type="email" id="newsletterEmail" placeholder="Skriv dig op til vores nyhedsbrev" required class="flex-grow p-xs text-sm bg-primary-50 border border-neu_db-300 focus:outline-none" />
+          <button type="submit" class="bg-sec_bl-400 text-primary-50 px-4 flex items-center hover:bg-sec_bl-500" aria-label="Tilmeld nyhedsbrev">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Bar -->
+<div class="bg-sec_bl-400 text-primary-50 w-full p-sm md:py-sm lg:px-xl lg:py-xs">
+  <div class="grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] justify-between items-start gap-sm md:items-center text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop font-body">
+    <div>Made with <span>💚</span> in Copenhagen</div>
+    <div>©Elby.dk™ 2025</div>
+    <div>Elbys løsning er under patentering</div>
+    <div class="flex space-x-4">
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/elbydotco/" class="relative w-m h-m block group">
+        <img src="../footer/Instagram.svg" class="absolute inset-0 w-full h-full group-hover:opacity-0 transition duration-300" alt="Instagram ikon" />
+        <img src="../footer/Instagram_hover.svg" class="w-full h-full transition duration-300" alt="Instagram hover ikon" />
+      </a>
+
+      <!-- Twitter (X) -->
+      <a href="https://twitter.com/elby_co" class="relative w-m h-m block group">
+        <img src="../footer/Twitter.svg" class="absolute inset-0 w-full h-full group-hover:opacity-0 transition duration-300" alt="X ikon" />
+        <img src="../footer/Twitter_hover.svg" class="w-full h-full transition duration-300" alt="X hover ikon" />
+      </a>
+
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/company/elby-co" class="relative w-m h-m block group">
+        <img src="../footer/Linkedin.svg" class="absolute inset-0 w-full h-full group-hover:opacity-0 transition duration-300" alt="LinkedIn ikon" />
+        <img src="../footer/Linkedin_hover.svg" class="w-full h-full transition duration-300" alt="LinkedIn hover ikon" />
+      </a>
+
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/profile.php?id=61551046767662" class="relative w-m h-m block group">
+        <img src="../footer/Facebook.svg" class="absolute inset-0 w-full h-full group-hover:opacity-0 transition duration-300" alt="Facebook ikon" />
+        <img src="../footer/Facebook_hover.svg" class="w-full h-full transition duration-300" alt="Facebook hover ikon" />
+      </a>
+
+      <!-- YouTube -->
+      <a href="https://www.youtube.com/@elby_co" class="relative w-m h-m block group">
+        <img src="../footer/YouTube.svg" class="absolute inset-0 w-full h-full group-hover:opacity-0 transition duration-300" alt="YouTube ikon" />
+        <img src="../footer/YouTube_hover.svg" class="w-full h-full transition duration-300" alt="YouTube hover ikon" />
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById("newsletterForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    alert("Tak for din tilmelding!");
+    this.reset();
+  });
+</script>

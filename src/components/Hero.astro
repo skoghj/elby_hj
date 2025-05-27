@@ -1,0 +1,21 @@
+---
+import Button from "./Button.astro";
+import Link from "./Link.astro";
+---
+
+<section class="relative w-full h-[95vh] overflow-hidden">
+  <!-- Baggrundsvideo -->
+  <video class="absolute top-0 left-0 w-full h-full object-cover" src="../index/forsidehero-desktop.webm" autoplay muted loop playsinline></video>
+
+  <!-- Overlay, fx mørk tint -->
+  <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+
+  <!-- Hero-indhold -->
+  <div class="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
+    <h1 class="text-white text-display-mobile md:text-display-tablet lg:text-display-desktop font-bold mb-xs max-w-4xl"><span class="text-acc_yel-500">LADELØSNING</span> TIL BYENS LEJLIGHEDER</h1>
+    <p class=" text-white text-lg md:text-3xl max-w-3xl mb-md">
+      Effektiv og nem ladeoplevelse lige ved din hoveddør <br> - en løsning skabt til storbyens behov
+    </p>
+  <Link href="/bestil">Få Elby til din bygning</Link>
+  </div>
+</section>

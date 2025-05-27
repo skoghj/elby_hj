@@ -1,0 +1,102 @@
+---
+import Hero from "../components/Hero.astro";
+import Leadflow from "../components/Leadflow.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import Splitcontent from "../components/Splitcontent.astro";
+import Uspsection from "../components/Uspsection.astro";
+import Prefooter from "../components/Prefooter.astro";
+import SplitcontentRight from "../components/SplitcontentRight.astro";
+import Textlink from "../components/Textlink.astro";
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Elby",
+  url: "https://elbyprojekt4.netlify.app",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://elbyprojekt4.netlify.app/search?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+};
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Elby",
+  url: "https://elbyprojekt4.netlify.app",
+  logo: "https://elbyprojekt4.netlify.app/svg/elby_logo.svg",
+  description: "Elby tilbyder intelligente, danskdesignede elbil-ladere med gratis installation og fokus på bæredygtighed – ideel til etageejendomme og erhverv.",
+  sameAs: ["https://www.linkedin.com/company/elby-co/", "https://www.facebook.com/profile.php?id=61551046767662", "https://www.instagram.com/elbydotco/", "https://www.youtube.com/@elby_co"],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+45 60 55 20 24",
+    contactType: "customer support",
+    areaServed: "DK",
+    availableLanguage: ["Danish", "English"],
+  },
+};
+---
+
+<MainLayout title="Elby-forside" description="Elby tilbyder intelligente, danskdesignede elbil-ladere med gratis installation og fokus på bæredygtighed. Perfekt til lejligheder og erhverv." ogtitle="Elby – Grøn og intelligent elbilopladning til bygninger" ogdescription="Få en Elby-lader til jeres bygning – uden abonnement, med overskudsdeling og bidrag til den grønne omstilling. Nem installation, dansk design.">
+  <Hero />
+
+  <section class="fade-in-up">
+    <Uspsection header="Sådan virker Elby" text1="1. Elby installerer et ladepunkt i bygningens facade" text2="2. Beborere og andre elbilister kan lade med eget kabel og Elby app" text3="3. Bygningen tjener penge og biddrager til den grønne omstilling" img1="../svg/ladepunkt.svg" img2="../svg/beboeropladning.svg" img3="../svg/fordele.svg" alt1="Elby ladepunkt" alt2="Elby App" alt3="Elby fordele" />
+  </section>
+
+  <section class="flex fade-in-up flex-col-reverse md:flex-row w-full bg-sec_be-500">
+    <div class="basis-full md:basis-[50%] flex items-center justify-center p-sm md:my-md">
+      <div class="max-w-md mx-auto">
+        <h3 class="mb-sm">Hvorfor vælge Elby?</h3>
+        <div class="flex flex-col gap-sm mb-xxxs -ml-4">
+          <div class="flex items-center gap-2">
+            <img src="../svg/install.svg" alt=" Installationsikon" class="w-16 h-16 mt-1" />
+            <p class="text-body-md md:text-body-md-tablet lg:text-body-md-desktop">Gratis ladeløsning til din bygning, fri installation og intet abonnement</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <img src="../svg/overskudsdeling.svg" alt="Penge ikon" class="w-16 h-16 mt-1" />
+            <p class="text-body-md md:text-body-md-tablet lg:text-body-md-desktop">Få op til 50% af overskuddet til dit ejendomsselskab eller din boligforening</p>
+          </div>
+          <div class="flex items-center gap-2 mb-xs">
+            <img src="../svg/groenomstilling.svg" alt="Blad ikon" class="w-16 h-16 mt-1" />
+            <p class="text-body-md md:text-body-md-tablet lg:text-body-md-desktop">Med Elby's lader deltager du aktivt i den grønne omstilling</p>
+          </div>
+        </div>
+        <!--<Link href="../omelby" variant="secondary" size="full"> Bliv klogere på fordelene ved Elby </Link>-->
+        <Textlink href="../omelby" linkText="Bliv klogere på fordelene ved Elby " />
+      </div>
+    </div>
+    <div class="basis-full md:basis-[50%]">
+      <img src="../index/index_opladning.webp" class="w-full h-full object-cover" />
+    </div>
+  </section>
+
+  <section class="fade-in-up">
+    <Leadflow />
+  </section>
+
+  <section class="bg-sec_be-500 fade-in-up flex items-center justify-center h-[80vh] w-full px-sm">
+    <div class="flex flex-col items-center text-center w-full max-w-3xl space-y-6">
+      <p class="text-2xl lg:text-4xl font-body">
+        I dag vælger <span class="font-bold">4 ud af 5</span> allerede elbil, når de køber ny bil
+      </p>
+      <img src="../index/index_cars.webp" alt="Elbiler" class="w-full max-w-3xl py-sm h-auto object-contain" />
+      <p class="text-2xl lg:text-4xl">Sæt skub i udviklingen med et Elby ladepunkt – gratis, grønt og gavnligt</p>
+    </div>
+  </section>
+
+  <section class="fade-in-up bg-primary-500">
+    <SplitcontentRight img="/index/gron_omstilling.webp" header="Sammen om den grønne omstilling" text1="Den grønne omstilling har brug for at vi alle tager fat og hjælper hinanden. Bor du i en by, så kan du nu tage handling, sammen med Elby og byens andre borgere. Også selvom du ikke har en elbil." text2="Få en Elby lader til jeres bygning, del jeres strøm, tjen penge på det og deltag aktivt i den grønne omstilling af persontransporten. Det vil også forbedre luftkvaliteten i byerne, gavne os alle og hjælpe fremtidens grønne el-system på vej. Vi kan gøre det sammen." linkText="Læs mere om Elbys vision" , linkType="text" , href="../omelby" />
+  </section>
+
+  <section class="fade-in-up">
+    <Splitcontent img="../index/index_women.webp" header="Grønne idéer - til dig , der gerne vil lidt mere" text1="I Elby Liv deler vi inspiration, indsigter og idéer til den grønne omstilling – i bygninger, i byer og blandt naboer. Du behøver ikke eje en elbil for at være med. Det vigtigste er viljen til at gøre en forskel." buttonText="Tilmeld dig Elby Liv" buttonLink="" />
+  </section>
+
+  <section class="fade-in-up bg-sec_be-500">
+    <Prefooter header="Elby - en smartere vej frem" , linkType="button" buttonText="Læs vores FAQ for flere detaljer" buttonlink="../omelby#5_faq_omelby" linkVariant="secondary" />
+  </section>
+
+  <div class="bg-sec_be-500">
+    <img src="../svg/bygrafik.svg" alt="Kbh skyline grafik" class="w-full h-auto" />
+  </div>
+</MainLayout>

@@ -1,0 +1,54 @@
+---
+import Link from "./Link.astro";
+import Textlink from "./Textlink.astro";
+
+const {
+  img,
+  header,
+  text1,
+  text2,
+  text3,
+  alt,
+  href = "#",
+  linkText,
+  buttonText,
+  buttonlink = "#",
+  linkVariant = "primary",
+  linkType = "text", // "text" = tekstlink, "button" = knap
+} = Astro.props;
+---
+
+<section class="flex flex-col md:flex-row w-full">
+  <div class="basis-full md:basis-[50%]">
+    <img src={img} alt={alt} class="w-full h-full object-cover" loading="lazy" />
+  </div>
+
+  <div class="basis-full md:basis-[50%] flex items-center justify-center p-sm">
+    <div class="max-w-md">
+      <h3 class="mb-4">{header}</h3>
+      <p class="mb-4">{text1}</p>
+      <p class="mb-6">{text2}</p>
+      <p class="mb-6">{text3}</p>
+
+      <!-- 💡 Vælg mellem tekstlink og knap -->
+      {
+        linkText &&
+          (linkType === "button" ? (
+            <Link href={href} variant={linkVariant} size="standard">
+              {linkText}
+            </Link>
+          ) : (
+            <Textlink href={href} linkText={linkText} />
+          ))
+      }
+
+      {
+        buttonText && (
+          <Link href={buttonlink} variant={linkVariant} size="full">
+            {buttonText}
+          </Link>
+        )
+      }
+    </div>
+  </div>
+</section>

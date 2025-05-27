@@ -1,0 +1,43 @@
+---
+import Link from "./Link.astro";
+import Textlink from "./Textlink.astro";
+
+const {
+  header,
+  text,
+  buttonText,
+  buttonlink = "#",
+  linkText,
+  href = "#",
+  linkType = "text", // "text" eller "button"
+  linkVariant = "primary",
+} = Astro.props;
+---
+
+<section class="py-xl px-sm">
+  {header && <h2 class="text-center pb-sm" set:html={header} />}
+  {text && <p class="text-center mb-s" set:html={text} />}
+
+  <!-- 💡 Vælg mellem tekstlink og knap -->
+  {
+    linkText &&
+      (linkType === "button" ? (
+        <Link href={href} variant={linkVariant} size="standard">
+          {linkText}
+        </Link>
+      ) : (
+        <div class="flex justify-center">
+          <Textlink href={href} linkText={linkText} />
+        </div>
+      ))
+  }
+  {
+    buttonText && (
+      <div class="flex justify-center">
+        <Link href={buttonlink} variant={linkVariant} size="standard">
+          {buttonText}
+        </Link>
+      </div>
+    )
+  }
+</section>
