@@ -63,10 +63,10 @@
   const app = document.getElementById("app");
   const rightImg = document.querySelector("#leadflow img");
 
-  // Vi opretter progressbar-elementerne her, men indsætter dem dynamisk i render
+  // Opret progress-bar-elementer, som indsættes dynamisk i render()
   const progressBarContainer = document.createElement("div");
   progressBarContainer.id = "progressBarContainer";
-  progressBarContainer.className = "w-full h-2 bg-gray-300 rounded- overflow-hidden mt-4";
+  progressBarContainer.className = "w-full h-2 bg-gray-300 rounded overflow-hidden mt-4";
 
   const progressBar = document.createElement("div");
   progressBar.id = "progressBar";
@@ -91,7 +91,7 @@
   }
 
   function updateRightImage() {
-    // Sæt lav opacitet og placer billedet lidt til venstre som udgangspunkt
+    // Sæt lav opacitet og flyt billedet lidt til venstre som udgangspunkt
     rightImg.style.opacity = 0;
     rightImg.style.transform = "translateX(-40px)";
 
@@ -112,24 +112,33 @@
   }
 
   function render() {
+    // Hvis vi er tilbage på step 0, så vis den oprindelige titel igen
+    if (step === 0) {
+      document.getElementById("leadflowTitle").style.display = "";
+    }
+
     app.innerHTML = "";
     updateRightImage();
 
-    const q = questions[step];
-
+    // Hvis vi stadig er under antallet af spørgsmål
     if (step < questions.length) {
+      const q = questions[step];
+      // Vigtigt: sæt w-full sammen med max-w-[600px], så beholderen altid fylder hele bredden (op til 600px)
       const container = document.createElement("div");
-      container.className = "max-w-[600px] mx-auto";
+      container.className = "w-full max-w-[600px] mx-auto";
 
       if (step === 0) {
+        // Første spørgsmål (type af lejlighed)
         container.innerHTML = `
-     
           <h2 class="text-lg font-body font-semibold mb-4">${q.question}</h2>
           <div id="optionSelector" class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
             ${q.options
               .map(
                 (opt) => `
-              <div class="optionSelector cursor-pointer flex flex-col items-center shadow bg-acc-primary-500 p-4 rounded transition border-2 border-transparent hover:border-acc_yel-500" data-answer="${opt.label}">
+              <div
+                class="optionSelector cursor-pointer flex flex-col items-center shadow bg-acc-primary-500 p-4 rounded transition border-2 border-transparent hover:border-acc_yel-500"
+                data-answer="${opt.label}"
+              >
                 <img src="${opt.icon}" alt="${opt.label}" class="w-16 h-16 mb-2 object-contain" />
                 <span>${opt.label}</span>
               </div>
@@ -137,19 +146,26 @@
               )
               .join("")}
           </div>
-    <button id="firstNextBtn" class="w-full bg-acc_yel-500 text-sec_bl-950 font-semibold py-xs mt-xxs rounded-full hover:shadow-[inset_30rem_0_0_0] hover:shadow-acc_gr-500 duration-[200ms,500ms] transition-[color,box-shadow]">
-  Se om du kan få Elby 
-</button>
-
+          <button
+            id="firstNextBtn"
+            class="w-full bg-acc_yel-500 text-sec_bl-950 font-semibold py-xs mt-xxs rounded-full hover:shadow-[inset_30rem_0_0_0] hover:shadow-acc_gr-500 duration-[200ms,500ms] transition-[color,box-shadow]"
+          >
+            Se om du kan få Elby
+          </button>
         `;
         app.appendChild(container);
 
         const nextBtn = container.querySelector("#firstNextBtn");
         nextBtn.classList.remove("hidden");
 
+        // Klik på en mulighed: fjern tidligere valgte, tilføj gul kant og gem svaret
         container.querySelectorAll(".optionSelector").forEach((el) => {
           el.addEventListener("click", () => {
-            container.querySelectorAll(".optionSelector").forEach((o) => o.classList.remove("selected"));
+            container.querySelectorAll(".optionSelector").forEach((o) => {
+              o.classList.remove("border-acc_yel-500");
+              o.classList.remove("selected");
+            });
+            el.classList.add("border-acc_yel-500");
             el.classList.add("selected");
             answers[0] = el.dataset.answer;
             updateRightImage();
@@ -161,7 +177,7 @@
             alert("Vælg venligst en mulighed før du fortsætter");
             return;
           }
-          // Skjul overskriften
+          // Skjul kun titlen når vi går til step 1
           document.getElementById("leadflowTitle").style.display = "none";
 
           step++;
@@ -170,28 +186,34 @@
 
         // Ingen progressbar på step 0
       } else {
-        // Step > 0: spørgsmål med tilbage-knap og progressbar UNDER tilbageknappen
+        // Alle efterfølgende spørgsmål (step >= 1 && step < questions.length)
         container.innerHTML = `
           <h2 class="text-lg font-body font-semibold mb-4">${q.question}</h2>
           <div class="space-y-2">
             ${q.options
               .map(
                 (opt) => `
-              <button class="w-full text-left border-black shadow bg-primary-500 hover:bg-acc_yel-500 px-4 py-2 rounded-sm transition" data-answer="${opt}">${opt}</button>
+              <button
+                class="w-full text-left border-black shadow bg-primary-500 hover:bg-acc_yel-500 px-4 py-2 rounded-sm transition"
+                data-answer="${opt}"
+              >
+                ${opt}
+              </button>
             `
               )
               .join("")}
           </div>
           <button id="backBtn" class="mt-xs text-sec_bl-300 flex items-center gap-1">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-  </svg>
-  Tilbage
-</button>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Tilbage
+          </button>
         `;
 
         app.appendChild(container);
 
+        // Klik på en mulighed: gem svar og gå næste
         container.querySelectorAll("[data-answer]").forEach((btn) => {
           btn.addEventListener("click", () => {
             answers[step] = btn.dataset.answer;
@@ -200,42 +222,49 @@
           });
         });
 
+        // Tilbage-knap: træk step ned og rendér igen
         container.querySelector("#backBtn").addEventListener("click", () => {
           step--;
           render();
         });
 
-        // Indsæt progressbar lige under tilbageknappen
+        // Indsæt progressbar under Tilbage-knappen
         container.appendChild(progressBarContainer);
         updateProgressBar();
       }
     } else if (step === questions.length) {
-      // Slutskærm med tilbageknap OG progressbar skjult
+      // Slutskærm lige før kontaktformular
       const hasDisqualifying = answers.some((a) => disqualifyingAnswers.includes(a));
       const container = document.createElement("div");
-      container.className = "max-w-[600px] mx-auto";
+      container.className = "w-full max-w-[600px] mx-auto";
 
       if (hasDisqualifying) {
         container.innerHTML = `
           <p class="text-2xl font-bold font-body mb-4">Vi har brug for flere oplysninger</p>
           <p class="text-gray-700 mb-4">Vi mangler lidt information for at kunne give dig den bedste løsning.</p>
-    
         `;
       } else {
         container.innerHTML = `
           <p class="text-2xl font-body font-bold mb-4">Du er klar til Elby!</p>
-          <p class="text-gray-700 mb-4">Fantastisk! Send os dine kontaktoplysninger, så kontakter vi dig for hurtigt at komme i gang.</p>
+          <p class="text-gray-700 mb-4">
+            Fantastisk! Send os dine kontaktoplysninger, så kontakter vi dig for hurtigt at komme i gang.
+          </p>
         `;
       }
 
       container.innerHTML += `
-        <button id="continueBtn" class="w-full font-semibold bg-acc_yel-500 text-black py-xs mt-xxs rounded-full  hover:shadow-[inset_30rem_0_0_0] hover:shadow-acc_gr-500 duration-[200ms,500ms] transition-[color,box-shadow]">Indtast dine kontaktoplysninger</button>
-       <button id="backBtn" class="mt-xs text-sec_bl-300 flex items-center gap-1">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-  </svg>
-  Tilbage
-</button>
+        <button
+          id="continueBtn"
+          class="w-full font-semibold bg-acc_yel-500 text-black py-xs mt-xxs rounded-full hover:shadow-[inset_30rem_0_0_0] hover:shadow-acc_gr-500 duration-[200ms,500ms] transition-[color,box-shadow]"
+        >
+          Indtast dine kontaktoplysninger
+        </button>
+        <button id="backBtn" class="mt-xs text-sec_bl-300 flex items-center gap-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Tilbage
+        </button>
       `;
 
       app.appendChild(container);
@@ -244,18 +273,17 @@
         step++;
         render();
       });
-
       container.querySelector("#backBtn").addEventListener("click", () => {
         step--;
         render();
       });
 
-      // Skjul progressbar på slutskærm
+      // Skjul progressbar på denne skærm
       progressBarContainer.style.display = "none";
     } else if (step === questions.length + 1) {
-      // Kontaktformular
+      // Kontaktformular-skærm
       const form = document.createElement("div");
-      form.className = "max-w-[600px] mx-auto";
+      form.className = "w-full max-w-[600px] mx-auto";
       form.innerHTML = `
         <h2 class="text-lg font-body font-semibold mb-4">Indtast dine kontaktoplysninger</h2>
         <form id="contactForm" class="space-y-4">
@@ -263,14 +291,19 @@
           <input type="email" placeholder="Email" class="w-full border p-xxs rounded-sm" required />
           <input type="tel" placeholder="Telefonnummer" class="w-full border p-xxs rounded-sm" />
           <textarea placeholder="Evt. kommentar" class="w-full border p-xxs rounded-sm"></textarea>
-          <button type="submit" class="w-full font-semibold bg-acc_yel-500 text-black py-xs mt-xxs rounded-full hover:shadow-[inset_30rem_0_0_0] hover:shadow-acc_gr-500 duration-[200ms,500ms] transition-[color,box-shadow]"">Indsend</button>
+          <button
+            type="submit"
+            class="w-full font-semibold bg-acc_yel-500 text-black py-xs mt-xxs rounded-full hover:shadow-[inset_30rem_0_0_0] hover:shadow-acc_gr-500 duration-[200ms,500ms] transition-[color,box-shadow]"
+          >
+            Indsend
+          </button>
         </form>
-      <button id="backBtn" class="mt-xs text-sec_bl-300 flex items-center gap-1">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-  </svg>
-  Tilbage
-</button>
+        <button id="backBtn" class="mt-xs text-sec_bl-300 flex items-center gap-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Tilbage
+        </button>
       `;
 
       app.appendChild(form);
@@ -280,7 +313,6 @@
         step++;
         render();
       });
-
       form.querySelector("#backBtn").addEventListener("click", () => {
         step--;
         render();
@@ -289,17 +321,26 @@
       // Skjul progressbar på kontaktformular
       progressBarContainer.style.display = "none";
     } else {
-      // Slutskærm efter form
+      // Endelig bekræftelse efter formular
       app.innerHTML = `
-    
-      <div class="flex flex-col mt-lg items-center text-center">
-           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-36 mx-auto text-acc_yel-700 pb-xs">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z"></path>
+        <div class="flex flex-col mt-lg items-center text-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-36 mx-auto text-acc_yel-700 pb-xs"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z"
+            ></path>
           </svg>
-        <p class="text-2xl font-bold ">Tak for din henvendelse!</p>
-        <p>Vi vender tilbage hurtigst muligt.</p>
-      </div>
-  
+          <p class="text-2xl font-bold">Tak for din henvendelse!</p>
+          <p>Vi vender tilbage hurtigst muligt.</p>
+        </div>
       `;
       // Skjul progressbar på slutskærm
       progressBarContainer.style.display = "none";
