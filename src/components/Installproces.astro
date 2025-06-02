@@ -1,0 +1,87 @@
+---
+
+---
+
+<div class="bg-sec_be-500 flex flex-col items-center justify-center pl-sm py-xl overflow-x-hidden">
+  <div class="mx-auto text-center mb-md">
+    <h2>Sådan er processen med Elby</h2>
+  </div>
+  <div class="ml-64 w-full">
+    <!-- Slider-wrapper -->
+    <div class="overflow-hidden relative">
+      <!-- Selve slideren: flex med space mellem kortene -->
+      <div id="slider" class="flex space-x-8 transition-transform duration-500 ease-in-out" style="transform: translateX(0%);">
+        <!-- Card 1 -->
+        <div class="flex-shrink-0 w-1/4 bg-primary-50 shadow-lg px-sm py-sm">
+          <p class="text-body-sm md:text-body-sm lg:text-body-sm-tablet mb-2 font-bold">01</p>
+          <p class="text-body-lg md:text-body-lg-tablet lg:text-body-lg-desktop mb-4 font-bold">Kontakt</p>
+          <p class="text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop">Vi starter med en snak for at afklare jeres behov og muligheder for en ladeløsning.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="flex-shrink-0 w-1/4 bg-primary-50 shadow-lg px-sm py-sm">
+          <p class="text-body-sm md:text-body-sm lg:text-body-sm-tablet mb-2 font-bold">02</p>
+          <p class="text-body-lg md:text-body-lg-tablet lg:text-body-lg-desktop mb-4 font-bold">Ejendomsvurdering</p>
+          <p class="text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop">Vi vurderer bygning og el-infrastruktur og planlægger en smart, effektiv installation sammen med jer.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="flex-shrink-0 w-1/4 bg-primary-50 shadow-lg px-sm py-sm">
+          <p class="text-body-sm md:text-body-sm lg:text-body-sm-tablet mb-2 font-bold">03</p>
+          <p class="text-body-lg md:text-body-lg-tablet lg:text-body-lg-desktop mb-4 font-bold">Installation</p>
+          <p class="text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop">Vi monterer ladestik i facaden og skjuler kablerne i vores unikke fortovsskinne – uden omkostninger for jer.</p>
+        </div>
+        <!-- Card 4 -->
+        <div class="flex-shrink-0 w-1/4 bg-primary-50 shadow-lg px-sm py-sm">
+          <p class="text-body-sm md:text-body-sm lg:text-body-sm-tablet mb-2 font-bold">04</p>
+          <p class="text-body-lg md:text-body-lg-tablet lg:text-body-lg-desktop mb-4 font-bold">Vedligeholdelse</p>
+          <p class="text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop">Vi sørger for drift, service og vedligeholdelse, så I altid har en løsning, der virker – uden besvær.</p>
+        </div>
+        <!-- Card 5 -->
+        <div class="flex-shrink-0 w-1/4 bg-primary-50 shadow-lg px-sm py-sm">
+          <p class="text-body-sm md:text-body-sm lg:text-body-sm-tablet mb-2 font-bold">05</p>
+          <p class="text-body-lg md:text-body-lg-tablet lg:text-body-lg-desktop mb-4 font-bold">Brugeradgang</p>
+          <p class="text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop">Beboere bruger vores app til opladning, forbrugsaflæsning og betaling – nemt og overskueligt.</p>
+        </div>
+        <!-- Card 6 -->
+        <div class="flex-shrink-0 w-1/4 bg-primary-50 shadow-lg px-sm py-sm">
+          <p class="text-body-sm md:text-body-sm lg:text-body-sm-tablet mb-2 font-bold">06</p>
+          <p class="text-body-lg md:text-body-lg-tablet lg:text-body-lg-desktop mb-4 font-bold">Indtægtsdeling</p>
+          <p class="text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop">Ejendommen får del i opladningsindtægterne – en grøn løsning med økonomisk gevinst.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dots -->
+    <div id="dots" class="flex justify-start mt-6 space-x-2">
+      <button class="dot w-3 h-3 rounded-full bg-acc_yel-700 focus:outline-none" data-index="0"></button>
+      <button class="dot w-3 h-3 rounded-full bg-neu_db-400 focus:outline-none" data-index="1"></button>
+      <button class="dot w-3 h-3 rounded-full bg-neu_db-400 focus:outline-none" data-index="2"></button>
+      <button class="dot w-3 h-3 rounded-full bg-neu_db-400 focus:outline-none" data-index="3"></button>
+      <button class="dot w-3 h-3 rounded-full bg-neu_db-400 focus:outline-none" data-index="4"></button>
+      <button class="dot w-3 h-3 rounded-full bg-neu_db-400 focus:outline-none" data-index="5"></button>
+    </div>
+  </div>
+
+  <script>
+    const slider = document.getElementById("slider");
+    const dots = document.querySelectorAll(".dot");
+    const totalCards = slider.children.length;
+    const stepPercent = 100 / totalCards;
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const idx = Number(dot.dataset.index);
+
+        // Flyt slider med 50% pr. klik (én kortbredde)
+        slider.style.transform = `translateX(-${idx * stepPercent}%)`;
+
+        // Resæt alle dots til grå, og sæt den aktive til gul
+        dots.forEach((d) => {
+          d.classList.remove("bg-acc_yel-500");
+          d.classList.add("bg-neu_db-400");
+        });
+        dot.classList.remove("bg-neu_db-400");
+        dot.classList.add("bg-acc_yel-500");
+      });
+    });
+  </script>
+</div>
