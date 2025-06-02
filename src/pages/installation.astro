@@ -1,0 +1,124 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Textlink from "../components/Textlink.astro";
+import Infografik from "../components/Infografiksektion.astro";
+import Uspsection from "../components/Uspsection.astro";
+import Link from "../components/Link.astro";
+---
+
+<MainLayout title="Installation og drift" description="Elby App gør elbilopladning nemt og tilgængeligt i byen. Find nærmeste lader, tilslut dit kabel og start opladningen direkte fra mobilen." ogtitle="Oplad elbilen nemt med Elby App" ogdescription="Se hvordan du bruger Elby App til at finde, tilslutte og starte opladning – med få klik. Download appen og kom i gang i dag.">
+  <section class="bg-sec_be-500">
+    <div class="w-full mx-auto flex flex-col-reverse justify-center lg:flex-row items-center gap-8 px-sm md:px-0">
+      <!-- Venstre kolonne -->
+      <div class="lg:w-1/2 w-full space-y-6">
+        <div class="max-w-lg flex flex-col gap-4 mx-auto">
+          <h1>Installation og drift</h1>
+          <p>Elbys diskrete installation holder indgang og fortov pænt, samtidig med at opladning af elbil bliver en naturlig del af hverdagen. Uanset om du bor i en lejlighed eller et parcelhus, tager vi os af alle tilladelser, kabelføring og tekniske detaljer, så du bare skal tilslutte din bil.</p>
+          <ul class="text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop font-medium text-sec_bl-950">
+            <li class="flex items-center gap-xs border-b border-t border-neu_db-400 py-xxs"><img src="/svg/besigtigelse.svg" class="w-10 h-10" alt="ansogning ikon" /> Rådgivning og besigtigelse (Ca. 1–2 dage)</li>
+
+            <li class="flex items-center gap-xs border-b border-neu_db-400 py-xxs"><img src="/svg/ansogning.svg" class="w-10 h-10" alt="fortovsskinne ikon" /> Tilladelsesansøgning og projektering (Ca. 1–2 dage)</li>
+
+            <li class="flex items-center gap-xs border-b border-neu_db-400 py-xxs"><img src="/svg/installation.svg" class="w-10 h-10" alt="fælles økonomisk gevinst ikon" /> Installation og montering (Ca. 2–3 timer)</li>
+
+            <li class="flex items-center gap-xs border-b border-neu_db-400 py-xxs"><img src="/svg/plug-charging.svg" class="w-10 h-10" alt="fælles økonomisk gevinst ikon" /> El-tilslutning og idriftsætning (Ca. 1–2 timer)</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Højre kolonne -->
+      <div class="lg:order-2 lg:w-1/2 w-full">
+        <img src="/inwall/installation.webp" alt="fortovsskinne montage" width="600" height="900" class="w-full h-auto object-cover" fetchpriority="high" loading="eager" />
+      </div>
+    </div>
+  </section>
+
+  <div class="fade-in-up">
+    <Uspsection header="Sådan kommer du i gang med Elby" text1="Få et uforpligtende løsningsforslag" text2="Vi klarer tilladelser og installation" text3="Oplad med dine naboer" img1="/svg/checklist.svg" img2="/svg/installation.svg" img3="/svg/plug-charging.svg" alt1="Ikon der viser gratis installation af Elby væglader" alt2="Ikon for 0 kr. abonnement på Elby ladeløsning" alt3="Ikon der illustrerer op til 50 % overskudsdeling for boligforeninger" showButton="false" />
+  </div>
+  <section class="flex fade-in-up flex-col-reverse md:flex-row w-full bg-sec_be-500">
+    <div class="basis-full md:basis-[50%]">
+      <img src="/inwall/montage.webp" alt="fortovsskinne montage" width="600" height="900" class="w-full h-full object-cover" />
+    </div>
+    <div class="basis-full md:basis-[50%] flex items-center justify-center p-sm md:my-md">
+      <div class="max-w-lg mx-auto">
+        <h3 class="mb-sm">Hvilke krav er der til min bygning?</h3>
+        <div class="flex flex-col gap-sm">
+          <div class="flex items-center gap-3">
+            <img src="../svg/leadflow_andel.svg" alt=" Installationsikon" class="w-14 h-14 mt-1" />
+            <div class="flex flex-col">
+              <p class="text-body-md md:text-body-md-tablet lg:text-body-md-desktop">Lejlighedsbygning, kontor eller villa med gadeparkering ved siden af.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <img src="../svg/path.svg" alt="Penge ikon" class="w-16 h-16 mt-1" />
+            <p class="text-body-md md:text-body-md-tablet lg:text-body-md-desktop">Et smalt fortov eller intet fortov mellem bygning og parkering (max 2-3 københavnerfliser)</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <img src="../svg/bicycle.svg" alt="Blad ikon" class="w-16 h-16 mt-1" />
+            <p class="text-body-md md:text-body-md-tablet lg:text-body-md-desktop">Ingen cykelsti mellem bygning og parkering.</p>
+          </div>
+          <div class="flex items-center gap-2 mb-xs">
+            <img src="../svg/plug-charging.svg" alt="Blad ikon" class="w-16 h-16 mt-1" />
+            <p class="text-body-md md:text-body-md-tablet lg:text-body-md-desktop">En kælder eller opgang hvor vi kan trække ledninger fra ladestik til relæ.</p>
+          </div>
+        </div>
+        <Textlink href="../kontakt" linkText="Matcher din bygning ikke ovenstående? Kontakt os for at høre, hvordan vi kan lave en tilpasset løsning til netop jer." />
+      </div>
+    </div>
+  </section>
+
+  <div class="fade-in-up bg-primary-500">
+    <Infografik
+      img="/svg/infografikBolig.svg"
+      header="Jo mere du lader, jo mere får du tilbage."
+      text1="Elby Partner tilbydes til ejer-, andels- og almene boliger ud fra et andelsprincip. Vi sørger for alt det praktiske, samt udlægget for den fulde installation. Når omkostningen er tjent hjem, deler vi op til halvdelen af overskuddet med jer. Uanset hvor meget – eller lidt – der lades i din bygning, skal foreningen aldrig have penge op af lommen.  "
+      text2="Vi tager os desuden af alt det administrative med afregning med elselskabet. Og fordi vi også leverer strømmen, skal du ikke heller ikke bøvle med afgiftsrefusion. "
+      alt="Infografik der viser stigende overskudsdeling fra 20 % til 50 %, baseret på antal opladninger og ugentligt forbrug med Elby Partner"
+      buttonText="Få Elby på generalforsamlingen"
+      buttonlink="https://www.elby.dk/guides-artikler/generalforsamling-med-elby"
+      linkVariant="secondary"
+    />
+  </div>
+
+  <section id="5_support" class="bg-sec_be-500 pt-lg pb-2xl fade-in-up overflow-x-hidden">
+    <div class="max-w-6xl mx-auto text-center mb-md">
+      <h3>Brug for hjælp? Kontakt os her!</h3>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+      <!-- Mail -->
+      <div class="flex flex-col items-center gap-5">
+        <Link href="mailto:hej@elby.com" variant="secondary" size="standard" class="group flex flex-col items-center gap-2">
+          hej@elby.com
+          <span class="relative w-6 h-6">
+            <img src="../svg/mail.svg" alt="Mail ikon" class="block group-hover:hidden absolute inset-0" />
+            <img src="../svg/mail_hover.svg" alt="Mail ikon hover" class="hidden group-hover:block absolute inset-0" />
+          </span>
+        </Link>
+      </div>
+      <!--Telefon -->
+      <div class="flex flex-col items-center gap-5">
+        <Link href="tel:+4560552024" variant="secondary" size="standard" class="group flex flex-col items-center gap-2">
+          +45 60 55 20 24
+          <span class="relative w-6 h-6">
+            <img src="../svg/phone.svg" alt="Telefon ikon" class="block group-hover:hidden absolute inset-0" />
+            <img src="../svg/phone_hover.svg" alt="Telefon ikon hover" class="hidden group-hover:block absolute inset-0" />
+          </span>
+        </Link>
+      </div>
+      <!-- Chat -->
+      <div class="flex flex-col items-center gap-5">
+        <Link variant="secondary" size="standard" type="button" class="group flex flex-col items-center gap-2">
+          Chat med os
+          <span class="relative w-6 h-6">
+            <img src="../svg/chat.svg" alt="Chat ikon" class="block group-hover:hidden absolute inset-0" />
+            <img src="../svg/chat_hover.svg" alt="Chat ikon hover" class="hidden group-hover:block absolute inset-0" />
+          </span>
+        </Link>
+      </div>
+    </div>
+  </section>
+  <section id="6_bygrafik" class="bg-sec_be-500">
+    <img src="../svg/bygrafik.svg" alt="Kbh skyline grafik" class="w-full h-auto" />
+  </section>
+</MainLayout>

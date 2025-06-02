@@ -3,15 +3,36 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Splitcontent from "../components/Splitcontent.astro";
 import SplitcontentRight from "../components/SplitcontentRight.astro";
 import Link from "../components/Link.astro";
-import SplitcontentHero from "../components/SplitcontentHero.astro";
+import Carousel from "../components/Carousel.astro";
 ---
 
-<MainLayout title="Elby App" description="Elby App gør elbilopladning nemt og tilgængeligt i byen. Find nærmeste lader, tilslut dit kabel og start opladningen direkte fra mobilen." ogtitle="Oplad elbilen nemt med Elby App" ogdescription="Se hvordan du bruger Elby App til at finde, tilslutte og starte opladning – med få klik. Download appen og kom i gang i dag.">
-  <div id="1_inwallhero" class="bg-sec_be-500 px-4 mt-l md:mt-0">
-    <SplitcontentHero title="Sådan virker elby" text="Elbys unikke design gør det muligt at installere, hvor traditionelle ladebokse og -standere ikke kan være. Se videoen for at se hvor let det er at lade med Elby." rightMediaType="youtube" rightMediaSrc="https://www.youtube.com/embed/1Ta-qd4lxZA" />
-  </div>
+<MainLayout title="Elby i hverdagen" description="Elby App gør elbilopladning nemt og tilgængeligt i byen. Find nærmeste lader, tilslut dit kabel og start opladningen direkte fra mobilen." ogtitle="Oplad elbilen nemt med Elby App" ogdescription="Se hvordan du bruger Elby App til at finde, tilslutte og starte opladning – med få klik. Download appen og kom i gang i dag.">
+  <section class="bg-sec_be-500">
+    <div id="1_inwallhero" class="px-4 relative max-w-screen-xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-8 sm:px-6 md:px-12 py-8">
+      <!-- Venstre kolonne -->
+      <div class="lg:w-1/2 w-full max-w-[450px] space-y-6">
+        <h1>Elby i hverdagen</h1>
+        <p>Med Elby bliver det en naturlig del af hverdagen at oplade elbilen lige uden for din lejlighed. Elbys diskrete installationer og smarte fortovsskinne sikrer, at gadebilledet forbliver ryddeligt, samtidig med at du får den bekvemmelighed, villaejere har nydt i årevis.</p>
+        <ul class="text-body-sm md:text-body-sm-tablet lg:text-body-sm-desktop font-medium text-sec_bl-950">
+          <li class="flex items-center gap-xs border-b border-t border-neu_db-400 py-xxs"><img src="/svg/plug-charging.svg" class="w-10 h-10" alt="opladning ikon" /> Opladning ved hoveddøren</li>
 
-  <section id="2_brugerguide" class="bg-primary-500 px-sm py-xl fade-in-up">
+          <li class="flex items-center gap-xs border-b border-neu_db-400 py-xxs"><img src="/svg/sleeve.svg" class="w-10 h-10" alt="fortovsskinne ikon" /> Rydelige fortove</li>
+
+          <li class="flex items-center gap-xs border-b border-neu_db-400 py-xxs"><img src="/svg/shared-benefit.svg" class="w-10 h-10" alt="fælles økonomisk gevinst ikon" /> Fælles økonomisk gevinst</li>
+
+          <li class="flex items-center gap-xs border-b border-neu_db-400 py-xxs"><img src="/svg/pay.svg" class="w-10 h-10" alt="fælles økonomisk gevinst ikon" /> Fast og lav pris på kun 2,99 kr/kWh</li>
+        </ul>
+      </div>
+      <!-- Højre kolonne -->
+      <div class="w-full lg:w-1/2 ml-auto">
+        <div class="aspect-[16/9]">
+          <iframe class="top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/1Ta-qd4lxZA" title="Elby i hverdagen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-500 px-sm py-xl fade-in-up overflow-x-hidden">
     <h2 class="text-center pb-md">Sådan lader du med Elby</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-sm max-w-7xl mx-auto">
       <!-- Step 1 -->
@@ -52,53 +73,17 @@ import SplitcontentHero from "../components/SplitcontentHero.astro";
     </div>
   </section>
 
-  <section id="3_laderkort" class="bg-sec_be-500 fade-in-up">
-    <Splitcontent img="../inwall/indreby2.webp" header="Hav af ladere" text1="Med Elbys app i lommen behøver du ikke længere gætte dig frem til, hvor du kan lade din elbil. Du får et hurtigt overblik over hele vores netværk af ladepunkter – også dem fra vores samarbejdspartnere." text3="Skal du bruge en lader et bestemt sted? Søg på byen, vejen eller måske en seværdighed – så finder appen det for dig. Du kan endda gemme dine foretrukne ladepunkter med et stjernemarkering, så du altid har dem lige ved hånden. Appen er lavet til virkeligheden – der hvor opladning skal være lige så naturlig og ukompliceret som at finde vej hjem." alt="Genereret kort med ladepunkter" />
-  </section>
-
-  <section id="4_elby_app" class="bg-primary-500 fade-in-up">
+  <section id="4_elby_app" class="bg-sec_be-500 fade-in-up overflow-x-hidden">
     <SplitcontentRight img="../inwall/mobil_app1.webp" alt="Mobil dummy med Elby app" header="Kom i gang med at lade med Elby" text1="Download Elby-app'en og få adgang til Elbys ladere." extraLink1="https://apps.apple.com/dk/app/elby-the-citys-ev-charger/id6444045723" extraLinkImg1="../svg/appstore.svg" extraLink2="https://play.google.com/store/apps/details?id=com.elby.elby&hl=en" extraLinkImg2="../svg/googleplay.svg" />
   </section>
 
-  <section id="5_support" class="bg-sec_be-500 pt-lg pb-2xl fade-in-up">
-    <div class="max-w-6xl mx-auto text-center mb-md">
-      <h3>Brug for hjælp? Kontakt os her!</h3>
-    </div>
-
-    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-      <!-- Mail -->
-      <div class="flex flex-col items-center gap-5">
-        <Link href="mailto:hej@elby.com" variant="secondary" size="standard" class="group flex flex-col items-center gap-2">
-          hej@elby.com
-          <span class="relative w-6 h-6">
-            <img src="../svg/mail.svg" alt="Mail ikon" class="block group-hover:hidden absolute inset-0" />
-            <img src="../svg/mail_hover.svg" alt="Mail ikon hover" class="hidden group-hover:block absolute inset-0" />
-          </span>
-        </Link>
-      </div>
-      <!-- Telefon -->
-      <div class="flex flex-col items-center gap-5">
-        <Link href="tel:+4560552024" variant="secondary" size="standard" class="group flex flex-col items-center gap-2">
-          +45 60 55 20 24
-          <span class="relative w-6 h-6">
-            <img src="../svg/phone.svg" alt="Telefon ikon" class="block group-hover:hidden absolute inset-0" />
-            <img src="../svg/phone_hover.svg" alt="Telefon ikon hover" class="hidden group-hover:block absolute inset-0" />
-          </span>
-        </Link>
-      </div>
-      <!-- Chat -->
-      <div class="flex flex-col items-center gap-5">
-        <Link variant="secondary" size="standard" type="button" class="group flex flex-col items-center gap-2">
-          Chat med os
-          <span class="relative w-6 h-6">
-            <img src="../svg/chat.svg" alt="Chat ikon" class="block group-hover:hidden absolute inset-0" />
-            <img src="../svg/chat_hover.svg" alt="Chat ikon hover" class="hidden group-hover:block absolute inset-0" />
-          </span>
-        </Link>
-      </div>
-    </div>
+  <section id="3_laderkort" class="bg-primary-500 fade-in-up overflow-x-hidden">
+    <Splitcontent img="../inwall/indreby2.webp" header="Hav af ladere" text1="Med Elbys app i lommen behøver du ikke længere gætte dig frem til, hvor du kan lade din elbil. Du får et hurtigt overblik over hele vores netværk af ladepunkter – også dem fra vores samarbejdspartnere." text3="Skal du bruge en lader et bestemt sted? Søg på byen, vejen eller måske en seværdighed – så finder appen det for dig. Du kan endda gemme dine foretrukne ladepunkter med et stjernemarkering, så du altid har dem lige ved hånden. Appen er lavet til virkeligheden – der hvor opladning skal være lige så naturlig og ukompliceret som at finde vej hjem." alt="Genereret kort med ladepunkter" />
   </section>
 
+  <section>
+    <Carousel />
+  </section>
   <section id="6_bygrafik" class="bg-sec_be-500">
     <img src="../svg/bygrafik.svg" alt="Kbh skyline grafik" class="w-full h-auto" />
   </section>

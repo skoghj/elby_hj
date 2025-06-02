@@ -3,7 +3,9 @@ import Link from "./Link.astro";
 ---
 
 <nav class="fixed top-0 left-0 w-full z-50 bg-primary-50 shadow-sm">
-  <!-- Mobile Navigation -->
+  <!-- ====================================
+       1) Mobile Navigation
+  ==================================== -->
   <div class="flex md:hidden items-center justify-between px-4 py-3 bg-primary-50 shadow-sm">
     <!-- Burger -->
     <button id="burger-menu" class="z-50" aria-label="Burgermenu">
@@ -20,61 +22,86 @@ import Link from "./Link.astro";
       <img src="/svg/elby_logo.svg" alt="Elby logo" class="h-10" />
     </a>
 
-    <!-- CTA -->
+    <!-- CTA (Mobile CTA ikon) -->
     <div class="block lg:hidden">
       <Link href="../bestil" variant="icon" size="standard" icon="/svg/loginikon.svg" />
     </div>
   </div>
 
-  <!-- Mobile Dropdown -->
-  <div id="dropdown-overlay" class="hidden md:hidden absolute inset-x-0 top-[60px] z-40 bg-primary-50 shadow-lg px-4 py-4" x-data="{ openDropdown: false }">
+  <!-- ====================================
+       2) Mobile Dropdown
+  ==================================== -->
+  <div id="dropdown-overlay" class="hidden md:hidden absolute inset-x-0 top-[60px] z-40 bg-primary-50 shadow-lg px-4 py-4" x-data="{ openDropdown: false, openHow: false }">
     <div class="bg-primary-50 px-4 py-4">
       <ul class="space-y-6 text-accent-500 font-semibold text-sm">
-        <!-- Dropdown toggler -->
+        <!-- Ladeløsninger  -->
         <li class="relative group">
           <button @click="openDropdown = !openDropdown" class="relative flex flex-col items-start w-full">
-            <div class="flex items-center justify-between w-full">
+            <div class="flex items-center justify-between w-full text-body-md">
               <span>Ladeløsninger</span>
               <svg :class="openDropdown ? 'rotate-180' : ''" class="ml-1 h-8 w-8 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
               </svg>
             </div>
-            <!-- Underbar animation line -->
             <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 hidden md:inline-block"></span>
           </button>
-          <!-- Dropdown content (mobile-friendly) -->
           <div x-show="openDropdown" x-transition class="mt-2 bg-primary-50 text-accent-500 z-20">
-            <ul class="space-y-1 w-full">
-              <li class="hover:bg-acc_yel-500 px-3 py-2 rounded-[4px]">
-                <a href="/boligforening?tab=bolig" class="block font-medium text-neutral-900">Elby til Boligforeninger</a>
+            <ul class="space-y-1 w-full flex flex-col">
+              <li class="hover:bg-acc_yel-500 p-2 rounded-[4px] border-gray-300 border-b">
+                <p class="text-neu_db-700 font-body font-light text-[10px]">EJER / ANDEL / ALMEN</p>
+                <a href="/boligforening?tab=bolig" class="block text-sec_bl-950 font-body text-body-md transition-colors">Elby til Boligforeninger</a>
+                <p class="font-body text-body-[10px] pt-2">Gratis installation og overskudsdeling</p>
               </li>
-              <li class="hover:bg-acc_yel-500 px-3 py-2 rounded-[4px]">
-                <a href="/boligforening?tab=ejendom" class="block font-medium text-neutral-900">Elby til Ejendomsselskaber</a>
+              <li class="hover:bg-acc_yel-500 p-2 rounded-[4px] border-gray-300 border-b">
+                <p class="text-neu_db-700 font-body font-light text-[10px]">ERHVERV / LEJEBOLIGER</p>
+                <a href="/boligforening?tab=ejendom" class="block text-sec_bl-950 font-body text-body-md transition-colors">Elby til Ejendomsselskaber</a>
+                <p class="font-body text-body-[10px] pt-2">Intet abonnement – tjener sig selv ind</p>
               </li>
-              <li class="hover:bg-acc_yel-500 px-3 py-2 rounded-[4px]">
-                <a href="/sleeve" class="block font-medium text-neutral-900">Elby Fortovsskinne</a>
+              <li class="hover:bg-acc_yel-500 p-2 rounded-[4px] border-gray-300 border-b">
+                <p class="text-neu_db-700 font-body font-light text-[10px]">ÆSTETISK / FUNKTIONEL</p>
+                <a href="/sleeve" class="block text-sec_bl-950 font-body text-body-md transition-colors">Elby Fortovsskinne</a>
+                <p class="font-body text-body-[10px] pt-2">Snubl-fri opladning og forudbestil fortovsskinne</p>
               </li>
-              <li class="hover:bg-acc_yel-500 px-3 py-2 rounded-[4px]">
-                <a href="/ladestander" class="block font-medium text-neutral-900">Elby Ladestander</a>
+              <li class="hover:bg-acc_yel-500 p-2 rounded-[4px]">
+                <p class="text-neu_db-700 font-body font-light text-[10px]">TRÆ / BETON / STÅL</p>
+                <a href="/ladestander" class="block text-sec_bl-950 font-body text-body-md transition-colors">Elby Ladestander</a>
+                <p class="font-body text-body-[10px] pt-2">11 kW med Type 2-stik og monteres på 1–2 dage</p>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Sådan virker Elby (tilføjet struktur) -->
+        <li class="relative group">
+          <button @click="openHow = !openHow" class="relative flex flex-col items-start w-full">
+            <div class="flex items-center justify-between w-full text-body-md">
+              <span>Sådan virker Elby</span>
+              <svg :class="openHow ? 'rotate-180' : ''" class="ml-1 h-8 w-8 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M7 10l5 5 5-5H7z" fill="currentColor"></path>
+              </svg>
+            </div>
+            <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 hidden md:inline-block"></span>
+          </button>
+          <div x-show="openHow" x-transition class="mt-2 bg-primary-50 text-accent-500 z-20">
+            <ul class="space-y-1 w-full flex flex-col">
+              <li class="hover:bg-acc_yel-500 p-2 rounded-[4px] border-gray-300 border-b">
+                <a href="/installation" class="block text-sec_bl-950 font-body text-body-md transition-colors">Installation</a>
+              </li>
+              <li class="hover:bg-acc_yel-500 p-2 rounded-[4px]">
+                <a href="/hverdag-elby" class="block text-sec_bl-950 font-body text-body-md transition-colors">Hverdag Elby</a>
               </li>
             </ul>
           </div>
         </li>
 
         <!-- Other normal links -->
-        <li class="relative group">
-          <a href="/inwall">
-            <span>Sådan virker Elby</span>
-            <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
-          </a>
-        </li>
-        <li class="relative group">
+        <li class="relative group text-body-md">
           <a href="/omelby">
             <span>Om Elby</span>
             <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
           </a>
         </li>
-        <li class="relative group">
+        <li class="relative group text-body-md">
           <a href="/kontakt">
             <span>Kontakt</span>
             <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
@@ -84,110 +111,233 @@ import Link from "./Link.astro";
     </div>
   </div>
 
-  <!-- Desktop Navigation -->
-  <div class="hidden md:flex items-center justify-between px-4 lg:px-8 xl:px-12 py-3 w-full bg-primary-50">
-    <!-- Left: Logo -->
-    <a href="/" class="shrink-0">
-      <img src="/svg/elby_logo.svg" alt="Elby Logo" class="h-[54px] w-auto" />
-    </a>
+  <!-- ====================================
+       3) Tablet & Desktop Navigation
+       (Kun “Sådan virker Elby” dropdown tilføjet)
+  ==================================== -->
+  <div class="hidden md:block w-full">
+    <div class="relative flex items-center justify-between px-4 lg:px-8 xl:px-12 py-3 bg-primary-50">
+      <!-- Left: Logo -->
+      <a href="/" class="shrink-0">
+        <img src="/svg/elby_logo.svg" alt="Elby Logo" class="h-[54px] w-auto" />
+      </a>
 
-    <!-- Center: Menu -->
-    <nav class="flex-1 mx-4">
-      <ul class="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-10 lg:gap-14 text-accent-500 font-regular text-sm">
-        <li class="relative group">
-          <span class="flex items-center font-body">
-            Ladeløsninger
-            <svg class="ml-1 mt-1 h-4 w-4 transition-transform group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
-            </svg>
-          </span>
-          <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
-          <!-- Dropdown -->
-          <div class="absolute left-0 mt-2 p-xxs w-64 rounded-[4px] bg-primary-50 text-accent-500 shadow-lg z-40 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-            <ul>
-              <li class="hover:bg-acc_yel-500 px-3 py-2 font-body">
-                <a href="/boligforening?tab=bolig" class="block text-neutral-900">Elby til Boligforeninger</a>
-              </li>
-              <li class="hover:bg-acc_yel-500 px-3 py-2 font-body">
-                <a href="/boligforening?tab=ejendom" class="block text-neutral-900">Elby til Ejendomsselskaber</a>
-              </li>
-              <li class="hover:bg-acc_yel-500 px-3 py-2 font-body">
-                <a href="/sleeve" class="block text-neutral-900">Elby Fortovsskinne</a>
-              </li>
-              <li class="hover:bg-acc_yel-500 px-3 py-2 font-body">
-                <a href="/ladestander" class="block text-neutral-900">Elby Ladestander</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="relative group font-body">
-          <a href="/inwall">
-            <span>Sådan virker Elby</span>
-            <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
-          </a>
-        </li>
-        <li class="relative group font-body">
-          <a href="/omelby">
-            <span>Om Elby</span>
-            <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
-          </a>
-        </li>
-        <li class="relative group font-body">
-          <a href="/kontakt">
-            <span>Kontakt</span>
-            <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+      <!-- Center: Menu -->
+      <nav class="flex-1 mx-4">
+        <ul class="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-10 lg:gap-14 text-accent-500 font-regular text-sm">
+          <!-- Ladeløsninger dropdown toggle -->
+          <li class="relative">
+            <button id="dropdown-toggle" class="flex items-center gap-1 hover:text-neutral-800 focus:outline-none font-body" aria-haspopup="true" aria-expanded="false">
+              Ladeløsninger
+              <svg id="toggle-icon" class="h-4 w-4 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+              </svg>
+            </button>
+          </li>
 
-    <!-- Tablet only icon CTA -->
-    <div class="shrink-0 hidden md:block lg:hidden">
-      <Link href="../bestil" variant="icon" size="standard" icon="/svg/loginikon.svg" />
-    </div>
-    <!-- Desktop : CTA -->
-    <div class="shrink-0 hidden lg:block">
-      <Link href="../bestil" variant="cta" size="standard" icon="/svg/loginikon.svg">
-        <span>Få Elby i din bygning</span>
-      </Link>
+          <!-- Sådan virker Elby dropdown toggle-->
+          <li class="relative">
+            <button id="how-toggle" class="flex items-center gap-1 hover:text-neutral-800 focus:outline-none font-body" aria-haspopup="true" aria-expanded="false">
+              Sådan virker Elby
+              <svg id="how-icon" class="h-4 w-4 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+              </svg>
+            </button>
+          </li>
+
+          <!-- Om Elby og Kontakt-->
+          <li class="relative group font-body">
+            <a href="/omelby">
+              <span>Om Elby</span>
+              <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+            </a>
+          </li>
+          <li class="relative group font-body">
+            <a href="/kontakt">
+              <span>Kontakt</span>
+              <span class="absolute left-0 bottom-[-2px] w-full h-[0.5px] bg-sec_bl-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Tablet only icon CTA -->
+      <div class="shrink-0 hidden md:block lg:hidden">
+        <Link href="../bestil" variant="icon" size="standard" icon="/svg/loginikon.svg" />
+      </div>
+
+      <!-- Desktop : CTA -->
+      <div class="shrink-0 hidden lg:block">
+        <Link href="../bestil" variant="cta" size="standard" icon="/svg/loginikon.svg">
+          <span>Få Elby i din bygning</span>
+        </Link>
+      </div>
+
+      <!-- Ladeløsninger dropdown-->
+      <div id="mega-dropdown" class="hidden absolute inset-x-0 top-full bg-primary-50 shadow-lg z-40">
+        <div class="max-w-full mx-auto px-md">
+          <ul class="grid grid-cols-4 gap-2 border-gray-200 border-t">
+            <li class="flex flex-col hover:bg-acc_yel-300 px-4 py-10 rounded-sm m-2">
+              <p class="text-neu_db-700 font-body font-light text-xs">EJER / ANDEL / ALMEN</p>
+              <a href="/boligforening?tab=bolig" class="block text-sec_bl-950 font-body text-body-md md:text-body-md-tablet lg:text-body-md-desktop transition-colors"> Elby til Boligforeninger </a>
+              <p class="font-body text-body-sm pt-2">Gratis installation-, overskudsdeling</p>
+            </li>
+            <li class="flex flex-col hover:bg-acc_yel-300 px-4 py-10 rounded-sm m-2">
+              <p class="text-neu_db-700 font-body font-light text-xs">ERHVERV / LEJEBOLIGER</p>
+              <a href="/boligforening?tab=ejendom" class="block text-sec_bl-950 font-body text-body-md md:text-body-md-tablet lg:text-body-md-desktop transition-colors"> Elby til Ejendomsselskaber </a>
+              <p class="font-body text-body-sm pt-2">Intet abonnement-, tjener sig selv ind</p>
+            </li>
+            <li class="flex flex-col hover:bg-acc_yel-300 px-4 py-10 rounded-sm m-2">
+              <p class="text-neu_db-700 font-body font-light text-xs">ÆSTETISK / FUNKTIONEL</p>
+              <a href="/sleeve" class="block text-sec_bl-950 font-body text-body-md md:text-body-md-tablet lg:text-body-md-desktop transition-colors"> Elby Fortovsskinne </a>
+              <p class="font-body text-body-sm pt-2">Snubl-fri opladning-, forudbestil fortovsskinne</p>
+            </li>
+            <li class="flex flex-col hover:bg-acc_yel-300 px-4 py-10 rounded-sm m-2">
+              <p class="text-neu_db-700 font-body font-light text-xs">TRÆ / BETON / STÅL</p>
+              <a href="/ladestander" class="block text-sec_bl-950 font-body text-body-md md:text-body-md-tablet lg:text-body-md-desktop transition-colors"> Elby Ladestander </a>
+              <p class="font-body text-body-sm pt-2">11 kW med Type 2-stik-, monteres på 1–2 dage</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Sådan virker Elby dropdown -->
+      <div id="how-dropdown" class="hidden absolute inset-x-0 top-full bg-primary-50 shadow-lg z-40">
+        <div class="max-w-4xl mx-auto px-md">
+          <ul class="grid grid-cols-2 gap-2 border-gray-200 border-t">
+            <li class="flex flex-col hover:bg-acc_yel-300 px-4 py-10 rounded-sm m-2">
+              <p class="text-neu_db-700 font-body font-light text-xs">NEMT OG OMKOSTNINGSFRI</p>
+              <a href="../installation" class="block text-sec_bl-950 font-body text-body-md md:text-body-md-tablet lg:text-body-md-desktop transition-colors"> Installation og drift </a>
+              <p class="font-body text-body-sm pt-2">læs om opsætning, vedligeholdelse og problemfri drift af din Elby-løsning.</p>
+            </li>
+            <li class="flex flex-col hover:bg-acc_yel-300 px-4 py-10 rounded-sm m-2">
+              <p class="text-neu_db-700 font-body font-light text-xs">SÅDAN LADER DU MED ELBY</p>
+              <a href="../inwall" class="block text-sec_bl-950 font-body text-body-md md:text-body-md-tablet lg:text-body-md-desktop transition-colors"> Brug Elby i hverdagen </a>
+              <p class="font-body text-body-sm pt-2">Opladning bliver en naturlig del af din dag – hurtigt, nemt og ubesværet.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- end of full-width dropdowns -->
     </div>
   </div>
 </nav>
 
-<!-- Script -->
+<!-- ====================================
+     4) JavaScript: Mobil+Desktop dropdown+toggle
+==================================== -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // 4-1) Mobile menu toggle
     const burgerMenuBtn = document.getElementById("burger-menu");
     const burgerIcon = document.getElementById("burger-icon");
     const closeIcon = document.getElementById("close-icon");
     const dropdownOverlay = document.getElementById("dropdown-overlay");
-
     let menuOpen = false;
-
-    // Funktion til at åbne/lukke mobilmenuen
     function toggleMenu(open) {
       menuOpen = open;
       dropdownOverlay.classList.toggle("hidden", !open);
       burgerIcon.classList.toggle("hidden", open);
       closeIcon.classList.toggle("hidden", !open);
     }
-
-    // Klik på burger-ikon → åbn eller luk menuen
-    burgerMenuBtn.addEventListener("click", () => {
-      toggleMenu(!menuOpen);
-    });
-
-    // Når et menupunkt klikkes → luk menuen og naviger til siden
+    burgerMenuBtn.addEventListener("click", () => toggleMenu(!menuOpen));
     document.querySelectorAll("#dropdown-overlay a").forEach((link) => {
       link.addEventListener("click", (e) => {
-        e.preventDefault(); // Forhindrer standard link-adfærd
+        e.preventDefault();
         const href = link.getAttribute("href");
-
-        toggleMenu(false); // Luk menuen
-
-        // Navigér til den ønskede side
+        toggleMenu(false);
         window.location.href = href;
       });
+    });
+
+    // 4-2) Desktop “Ladeløsninger” dropdown
+    const dropdownToggle = document.getElementById("dropdown-toggle");
+    const megaDropdown = document.getElementById("mega-dropdown");
+    const toggleIcon = document.getElementById("toggle-icon");
+    let dropdownOpen = false;
+
+    dropdownToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      // If “Sådan virker Elby” is open, close it
+      if (howOpen) {
+        howDropdown.classList.remove("opacity-100");
+        howDropdown.classList.add("opacity-0");
+        setTimeout(() => howDropdown.classList.add("hidden"), 200);
+        howToggle.setAttribute("aria-expanded", "false");
+        howIcon.classList.remove("rotate-180");
+        howOpen = false;
+      }
+
+      dropdownOpen = !dropdownOpen;
+      if (dropdownOpen) {
+        megaDropdown.classList.remove("hidden", "opacity-0");
+        megaDropdown.classList.add("opacity-100");
+        dropdownToggle.setAttribute("aria-expanded", "true");
+      } else {
+        megaDropdown.classList.remove("opacity-100");
+        megaDropdown.classList.add("opacity-0");
+        setTimeout(() => megaDropdown.classList.add("hidden"), 200);
+        dropdownToggle.setAttribute("aria-expanded", "false");
+      }
+      toggleIcon.classList.toggle("rotate-180");
+    });
+
+    // 4-3) Desktop “Sådan virker Elby” dropdown
+    const howToggle = document.getElementById("how-toggle");
+    const howDropdown = document.getElementById("how-dropdown");
+    const howIcon = document.getElementById("how-icon");
+    let howOpen = false;
+
+    howToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      // If “Ladeløsninger” is open, close it
+      if (dropdownOpen) {
+        megaDropdown.classList.remove("opacity-100");
+        megaDropdown.classList.add("opacity-0");
+        setTimeout(() => megaDropdown.classList.add("hidden"), 200);
+        dropdownToggle.setAttribute("aria-expanded", "false");
+        toggleIcon.classList.remove("rotate-180");
+        dropdownOpen = false;
+      }
+
+      howOpen = !howOpen;
+      if (howOpen) {
+        howDropdown.classList.remove("hidden", "opacity-0");
+        howDropdown.classList.add("opacity-100");
+        howToggle.setAttribute("aria-expanded", "true");
+      } else {
+        howDropdown.classList.remove("opacity-100");
+        howDropdown.classList.add("opacity-0");
+        setTimeout(() => howDropdown.classList.add("hidden"), 200);
+        howToggle.setAttribute("aria-expanded", "false");
+      }
+      howIcon.classList.toggle("rotate-180");
+    });
+
+    // 클릭 외부 시: 닫기 & 화살표 원위치
+    document.addEventListener("click", (e) => {
+      if (!dropdownToggle.contains(e.target) && !megaDropdown.contains(e.target)) {
+        if (dropdownOpen) {
+          megaDropdown.classList.remove("opacity-100");
+          megaDropdown.classList.add("opacity-0");
+          setTimeout(() => megaDropdown.classList.add("hidden"), 200);
+          dropdownToggle.setAttribute("aria-expanded", "false");
+          toggleIcon.classList.remove("rotate-180");
+          dropdownOpen = false;
+        }
+      }
+      if (!howToggle.contains(e.target) && !howDropdown.contains(e.target)) {
+        if (howOpen) {
+          howDropdown.classList.remove("opacity-100");
+          howDropdown.classList.add("opacity-0");
+          setTimeout(() => howDropdown.classList.add("hidden"), 200);
+          howToggle.setAttribute("aria-expanded", "false");
+          howIcon.classList.remove("rotate-180");
+          howOpen = false;
+        }
+      }
     });
   });
 </script>

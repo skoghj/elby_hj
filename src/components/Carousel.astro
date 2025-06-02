@@ -1,0 +1,80 @@
+---
+
+---
+
+<div class="bg-sec_be-500 flex flex-col items-center justify-center pl-sm py-xl overflow-x-hidden">
+  <div class="mx-auto text-center mb-md">
+    <h3>Hør kunders oplevelser med Elby</h3>
+  </div>
+  <div class="ml-64 w-full">
+    <!-- Slider-wrapper -->
+    <div class="overflow-hidden relative">
+      <!-- Selve slideren: flex med space mellem kortene -->
+      <div id="slider" class="flex space-x-8 transition-transform duration-500 ease-in-out" style="transform: translateX(0%);">
+        <!-- 5 kort á 50% bredde -->
+        <div class="flex-shrink-0 w-1/2 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
+          <p class="text-2xl italic mb-6">“Fantastisk til foreningen! gratis installation, pænt kabel-system og god indtjening til fælleskassen.”</p>
+          <p class="font-semibold text-lg">Mette Jensen</p>
+          <p class="text-sm uppercase text-neu_db-500">Amager</p>
+        </div>
+
+        <div class="flex-shrink-0 w-1/2 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
+          <p class="text-2xl italic mb-6">“Super nem booking og professionel opsætning. Systemet fungerer fejlfrit, og beboerne elsker, at der altid er pænt og ryddeligt omkring vægladeren.”</p>
+          <p class="font-semibold text-lg">Camilla Nielsen</p>
+          <p class="text-sm uppercase text-neu_db-500">Indre By</p>
+        </div>
+
+        <div class="flex-shrink-0 w-1/2 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
+          <p class="text-2xl italic mb-6">“Elby var utroligt imødekommende under hele processen. Installatørerne var punktlige og professionelle, og nu har vi pålidelige vægladeren lige ved opgangen. Brugeroplevelsen er i top.”</p>
+          <p class="font-semibold text-lg">Thomas Sørensen</p>
+          <p class="text-sm uppercase text-neu_db-500">Vesterbro</p>
+        </div>
+
+        <div class="flex-shrink-0 w-1/2 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
+          <p class="text-2xl italic mb-6">“App’en er super intuitiv, og fortovsskinnen holder kablerne pæne og sikre. Vi har allerede modtaget første overskudsudbetaling til foreningen – fantastisk økonomisk bonus!”</p>
+          <p class="font-semibold text-lg">Lise Rasmussen</p>
+          <p class="text-sm uppercase text-neu_db-500">Valby</p>
+        </div>
+
+        <div class="flex-shrink-0 w-1/2 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
+          <p class="text-2xl italic mb-6">“Perfekt løsning til vores erhvervsejendom – og indtjeningsmodellen betyder ekstra indtægter uden besvær. ”</p>
+          <p class="font-semibold text-lg">Michael Hansen</p>
+          <p class="text-sm uppercase text-neu_db-500">Vanløse</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dots -->
+    <div id="dots" class="flex justify-start mt-6 space-x-2">
+      <button class="dot w-3 h-3 rounded-full bg-acc_yel-700 focus:outline-none" data-index="0"></button>
+      <button class="dot w-3 h-3 rounded-full bg-neu_db-400 focus:outline-none" data-index="1"></button>
+      <button class="dot w-3 h-3 rounded-full bg-neu_db-400 focus:outline-none" data-index="2"></button>
+      <button class="dot w-3 h-3 rounded-full bg-neu_db-400 focus:outline-none" data-index="3"></button>
+      <button class="dot w-3 h-3 rounded-full bg-neu_db-400 focus:outline-none" data-index="4"></button>
+    </div>
+  </div>
+
+  <script>
+    const slider = document.getElementById("slider");
+    const dots = document.querySelectorAll(".dot");
+    const visibleCount = 2; // vi viser 2 kort ad gangen
+    const stepPercent = 100 / visibleCount;
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const idx = Number(dot.dataset.index);
+
+        // Flyt slider med 50% pr. klik (én kortbredde)
+        slider.style.transform = `translateX(-${idx * stepPercent}%)`;
+
+        // Resæt alle dots til grå, og sæt den aktive til gul
+        dots.forEach((d) => {
+          d.classList.remove("bg-acc_yel-500");
+          d.classList.add("bg-neu_db-400");
+        });
+        dot.classList.remove("bg-neu_db-400");
+        dot.classList.add("bg-acc_yel-500");
+      });
+    });
+  </script>
+</div>
