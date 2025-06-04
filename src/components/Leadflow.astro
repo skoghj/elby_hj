@@ -9,8 +9,8 @@
     <div class="px-sm py-md flex flex-col justify-center items-center max-w-lg mx-auto">
       <div class="charging-container"></div>
       <!-- Container med max-width og centreret -->
-      <div class="w-full max-w-[600px]">
-        <h3 class="mb-sm" id="leadflowTitle">Se hvilken løsning fra Elby, der passer til dig</h3>
+      <div class="w-full max-w-[600px]" id="leadflowContentWrapper">
+        <h3 class="mb-sm" id="leadflowTitle">Se hvilken løsning fra Elby, der passer til jer</h3>
         <div id="app" class="w-full"></div>
       </div>
     </div>
@@ -22,7 +22,7 @@
 
   const questions = [
     {
-      question: "Hvilken type lejlighed bor du i?",
+      question: "Hvilken type lejlighed administrere du??",
       options: [
         { label: "Leje", icon: "../svg/leadflow_leje.svg", image: "../index/leje.webp" },
         { label: "Andel", icon: "../svg/leadflow_andel.svg", image: "../index/andel.webp" },
@@ -128,7 +128,7 @@
       container.className = "w-full max-w-[600px] mx-auto";
 
       if (step === 0) {
-        // Første spørgsmål (type af lejlighed)
+        // Første spørgsmål (type af lejlighed) – kun her tilføjer vi klik/valg
         container.innerHTML = `
           <h2 class="text-lg font-body font-semibold mb-4">${q.question}</h2>
           <div id="optionSelector" class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
@@ -150,7 +150,7 @@
             id="firstNextBtn"
             class="w-full bg-acc_yel-500 text-sec_bl-950 font-semibold py-xs mt-xxs rounded-full hover:shadow-[inset_30rem_0_0_0] hover:shadow-acc_gr-500 duration-[200ms,500ms] transition-[color,box-shadow]"
           >
-            Se om du kan få Elby
+            Se om i kan få Elby
           </button>
         `;
         app.appendChild(container);
@@ -162,11 +162,9 @@
         container.querySelectorAll(".optionSelector").forEach((el) => {
           el.addEventListener("click", () => {
             container.querySelectorAll(".optionSelector").forEach((o) => {
-              o.classList.remove("border-acc_yel-500");
-              o.classList.remove("selected");
+              o.classList.remove("border-acc_yel-500", "ring-2", "ring-acc_yel-500");
             });
-            el.classList.add("border-acc_yel-500");
-            el.classList.add("selected");
+            el.classList.add("border-acc_yel-500", "ring-2", "ring-acc_yel-500");
             answers[0] = el.dataset.answer;
             updateRightImage();
           });
@@ -225,6 +223,7 @@
         // Tilbage-knap: træk step ned og rendér igen
         container.querySelector("#backBtn").addEventListener("click", () => {
           step--;
+          // Retur til step 0 skal beholde max-w-[600px]
           render();
         });
 
