@@ -176,26 +176,26 @@ import Link from "./Link.astro";
       <!-- Ladeløsninger dropdown-->
       <div id="mega-dropdown" class="hidden absolute inset-x-0 top-full bg-primary-50 shadow-lg z-40">
         <div class="max-w-full mx-auto px-md">
-          <ul class="grid grid-cols-4 gap-2 border-gray-200 border-t">
-            <li class="flex flex-col hover:bg-acc_yel-300 px-4 py-10 rounded-sm m-2">
-              <p class="text-neu_db-700 font-body font-light text-xs">EJER / ANDEL / ALMEN</p>
-              <a href="/boligforening?tab=bolig" class="block text-sec_bl-950 font-body text-body-md md:text-body-md-tablet lg:text-body-md-desktop transition-colors"> Elby til Boligforeninger </a>
-              <p class="font-body text-body-sm pt-2">Gratis installation-, overskudsdeling</p>
+          <ul class="flex space-x-2 justify-between w-full px-10 py-8 border-gray-200 border-t">
+            <li class="flex flex-col hover:bg-acc_yel-500 p-6 rounded-[8px]">
+              <p class="text-neu_db-700 font-body font-light text-[11px]">EJER / ANDEL / ALMEN</p>
+              <a href="/boligforening?tab=bolig" class="block text-sec_bl-950 font-body text-body-md transition-colors"> Elby til Boligforeninger </a>
+              <p class="font-body font-light text-body-sm pt-2">Gratis lader og overskudsdeling op til 50%</p>
             </li>
-            <li class="flex flex-col hover:bg-acc_yel-300 px-4 py-10 rounded-sm m-2">
-              <p class="text-neu_db-700 font-body font-light text-xs">ERHVERV / LEJEBOLIGER</p>
-              <a href="/boligforening?tab=ejendom" class="block text-sec_bl-950 font-body text-body-md md:text-body-md-tablet lg:text-body-md-desktop transition-colors"> Elby til Ejendomsselskaber </a>
-              <p class="font-body text-body-sm pt-2">Intet abonnement-, tjener sig selv ind</p>
+            <li class="flex flex-col hover:bg-acc_yel-500 p-6 rounded-[8px]">
+              <p class="text-neu_db-700 font-body font-light text-[11px]">ERHVERV / LEJEBOLIGER</p>
+              <a href="/boligforening?tab=ejendom" class="block text-sec_bl-950 font-body text-body-md transition-colors"> Elby til Ejendomsselskaber </a>
+              <p class="font-body font-light text-body-sm pt-2">Intet abonnement og overskudsdeling op til 60%</p>
             </li>
-            <li class="flex flex-col hover:bg-acc_yel-300 px-4 py-10 rounded-sm m-2">
-              <p class="text-neu_db-700 font-body font-light text-xs">ÆSTETISK / FUNKTIONEL</p>
-              <a href="/sleeve" class="block text-sec_bl-950 font-body text-body-md md:text-body-md-tablet lg:text-body-md-desktop transition-colors"> Elby Fortovsskinne </a>
-              <p class="font-body text-body-sm pt-2">Snubl-fri opladning-, forudbestil fortovsskinne</p>
+            <li class="flex flex-col hover:bg-acc_yel-500 p-6 rounded-[8px]">
+              <p class="text-neu_db-700 font-body font-light text-[11px]">ÆSTETISK / FUNKTIONEL</p>
+              <a href="/sleeve" class="block text-sec_bl-950 font-body text-body-md transition-colors"> Elby Fortovsskinne </a>
+              <p class="font-body font-light text-body-sm pt-2">Eliminerer snublefare - den er sikker for alle</p>
             </li>
-            <li class="flex flex-col hover:bg-acc_yel-300 px-4 py-10 rounded-sm m-2">
-              <p class="text-neu_db-700 font-body font-light text-xs">TRÆ / BETON / STÅL</p>
-              <a href="/ladestander" class="block text-sec_bl-950 font-body text-body-md md:text-body-md-tablet lg:text-body-md-desktop transition-colors"> Elby Ladestander </a>
-              <p class="font-body text-body-sm pt-2">11 kW med Type 2-stik-, monteres på 1–2 dage</p>
+            <li class="flex flex-col hover:bg-acc_yel-500 p-6 rounded-[8px]">
+              <p class="text-neu_db-700 font-body font-light text-[11px]">TRÆ / BETON / STÅL</p>
+              <a href="/ladestander" class="block text-sec_bl-950 font-body text-body-md transition-colors"> Elby Ladestander </a>
+              <p class="font-body font-light text-body-sm pt-2">Ladeinfrastuktur, der er nænsom for byen</p>
             </li>
           </ul>
         </div>
@@ -203,17 +203,17 @@ import Link from "./Link.astro";
 
       <!-- Sådan virker Elby dropdown -->
       <div id="how-dropdown" class="hidden absolute inset-x-0 top-full bg-primary-50 shadow-lg z-40">
-        <div class="max-w-4xl mx-auto px-md">
-          <ul class="grid grid-cols-2 gap-2 border-gray-200 border-t">
-            <li class="flex flex-col hover:bg-acc_yel-300 px-4 py-10 rounded-sm m-2">
-              <p class="text-neu_db-700 font-body font-light text-xs">NEMT OG OMKOSTNINGSFRI</p>
-              <a href="../installation" class="block text-sec_bl-950 font-body text-body-md md:text-body-md-tablet lg:text-body-md-desktop transition-colors"> Installation og drift </a>
-              <p class="font-body text-body-sm pt-2">Læs om opsætning, vedligeholdelse og problemfri drift af din Elby-løsning.</p>
+        <div class="w-full mx-auto px-md border-gray-200 border-t">
+          <ul class="flex space-x-3 justify-center w-full px-10 py-8">
+            <li class="flex flex-col hover:bg-acc_yel-500 p-6 rounded-[8px]">
+              <p class="text-neu_db-700 font-body font-light text-[11px]">NEMT OG OMKOSTNINGSFRI</p>
+              <a href="../installation" class="block text-sec_bl-950 font-body text-body-md transition-colors"> Installation og drift </a>
+              <p class="font-body text-body-sm pt-2">Med Elby slipper I for alt det praktiske</p>
             </li>
-            <li class="flex flex-col hover:bg-acc_yel-300 px-4 py-10 rounded-sm m-2">
-              <p class="text-neu_db-700 font-body font-light text-xs">SÅDAN LADER DU MED ELBY</p>
-              <a href="../inwall" class="block text-sec_bl-950 font-body text-body-md md:text-body-md-tablet lg:text-body-md-desktop transition-colors"> Brug Elby i hverdagen </a>
-              <p class="font-body text-body-sm pt-2">Opladning bliver en naturlig del af din dag – hurtigt, nemt og ubesværet.</p>
+            <li class="flex flex-col hover:bg-acc_yel-500 p-6 rounded-[8px]">
+              <p class="text-neu_db-700 font-body font-light text-[11px]">SÅDAN LADER DU MED ELBY</p>
+              <a href="../inwall" class="block text-sec_bl-950 font-body text-body-md transition-colors"> Brug Elby i hverdagen </a>
+              <p class="font-body text-body-sm pt-2">Diskret, funktionel og opladning med omtanke</p>
             </li>
           </ul>
         </div>
