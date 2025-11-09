@@ -1,80 +1,155 @@
 ---
-
 ---
 
-<div class="bg-sec_be-500 flex flex-col items-center justify-center pl-sm py-xl overflow-x-hidden">
+<div class="bg-sec_be-500 flex flex-col items-center justify-center py-xl overflow-x-hidden relative">
   <div class="mx-auto text-center mb-md">
     <h3>Hør kunders oplevelser med Elby</h3>
   </div>
-  <div class="ml-64 w-full">
-    <!-- Slider-wrapper -->
-    <div class="overflow-hidden relative">
-      <!-- Selve slideren: flex med space mellem kortene -->
-      <div id="slider" class="flex space-x-8 transition-transform duration-500 ease-in-out" style="transform: translateX(0%);">
-        <!-- 5 kort á 50% bredde -->
-        <div class="flex-shrink-0 w-1/2 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
-          <p class="text-2xl italic mb-6">“Fantastisk til foreningen! Gratis installation, pænt kabel-system og god indtjening til fælleskassen.”</p>
+
+  <div class="relative w-full max-w-[1400px] px-6 sm:px-10 md:px-14 lg:px-20">
+    <!-- 좌측 화살표 -->
+    <button
+      id="prevBtn"
+      class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-neu_db-900/40 text-white rounded-full w-9 h-9 flex items-center justify-center hover:bg-neu_db-900/60 transition"
+    >
+      &#8592;
+    </button>
+
+    <!-- 슬라이드 뷰포트 -->
+    <div id="sliderViewport" class="overflow-hidden relative">
+      <div
+        id="sliderTrack"
+        class="flex transition-transform duration-500 ease-in-out will-change-transform space-x-8"
+      >
+        <!-- 카드 1 -->
+        <div class="card-item flex-shrink-0 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
+          <p class="text-2xl italic mb-6">
+            “Fantastisk til foreningen! Gratis installation, pænt kabel-system og god indtjening til fælleskassen.”
+          </p>
           <p class="font-semibold text-lg">Mette Jensen</p>
           <p class="text-sm uppercase text-neu_db-500">Amager</p>
         </div>
 
-        <div class="flex-shrink-0 w-1/2 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
-          <p class="text-2xl italic mb-6">“Super nem booking og professionel opsætning. Systemet fungerer fejlfrit, og beboerne elsker, at der altid er pænt og ryddeligt omkring vægladeren.”</p>
+        <!-- 카드 2 -->
+        <div class="card-item flex-shrink-0 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
+          <p class="text-2xl italic mb-6">
+            “Super nem booking og professionel opsætning. Systemet fungerer fejlfrit, og beboerne elsker, at der altid er pænt og ryddeligt omkring vægladeren.”
+          </p>
           <p class="font-semibold text-lg">Camilla Nielsen</p>
           <p class="text-sm uppercase text-neu_db-500">Indre By</p>
         </div>
 
-        <div class="flex-shrink-0 w-1/2 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
-          <p class="text-2xl italic mb-6">“Elby var utroligt imødekommende under hele processen. Installatørerne var punktlige og professionelle, og nu har vi pålidelige vægladeren lige ved opgangen. Brugeroplevelsen er i top.”</p>
+        <!-- 카드 3 -->
+        <div class="card-item flex-shrink-0 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
+          <p class="text-2xl italic mb-6">
+            “Elby var utroligt imødekommende under hele processen. Installatørerne var punktlige og professionelle, og nu har vi pålidelige vægladeren lige ved opgangen. Brugeroplevelsen er i top.”
+          </p>
           <p class="font-semibold text-lg">Thomas Sørensen</p>
           <p class="text-sm uppercase text-neu_db-500">Vesterbro</p>
         </div>
 
-        <div class="flex-shrink-0 w-1/2 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
-          <p class="text-2xl italic mb-6">“App’en er super intuitiv, og fortovsskinnen holder kablerne pæne og sikre. Vi har allerede modtaget første overskudsudbetaling til foreningen – fantastisk økonomisk bonus!”</p>
+        <!-- 카드 4 -->
+        <div class="card-item flex-shrink-0 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
+          <p class="text-2xl italic mb-6">
+            “App’en er super intuitiv, og fortovsskinnen holder kablerne pæne og sikre. Vi har allerede modtaget første overskudsudbetaling til foreningen – fantastisk økonomisk bonus!”
+          </p>
           <p class="font-semibold text-lg">Lise Rasmussen</p>
           <p class="text-sm uppercase text-neu_db-500">Valby</p>
         </div>
 
-        <div class="flex-shrink-0 w-1/2 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
-          <p class="text-2xl italic mb-6">“Perfekt løsning til vores erhvervsejendom – og indtjeningsmodellen betyder ekstra indtægter uden besvær. ”</p>
+        <!-- 카드 5 -->
+        <div class="card-item flex-shrink-0 bg-primary-50 rounded-sm shadow-lg px-md py-2xl">
+          <p class="text-2xl italic mb-6">
+            “Perfekt løsning til vores erhvervsejendom – og indtjeningsmodellen betyder ekstra indtægter uden besvær.”
+          </p>
           <p class="font-semibold text-lg">Michael Hansen</p>
           <p class="text-sm uppercase text-neu_db-500">Vanløse</p>
         </div>
       </div>
     </div>
 
-    <!-- Dots -->
-    <div id="dots" class="flex justify-start mt-6 space-x-2">
-      <button class="dot w-3 h-3 rounded-full bg-acc_yel-700 focus:outline-none" data-index="0"></button>
-      <button class="dot w-3 h-3 rounded-full bg-neu_db-400 focus:outline-none" data-index="1"></button>
-      <button class="dot w-3 h-3 rounded-full bg-neu_db-400 focus:outline-none" data-index="2"></button>
-      <button class="dot w-3 h-3 rounded-full bg-neu_db-400 focus:outline-none" data-index="3"></button>
-      <button class="dot w-3 h-3 rounded-full bg-neu_db-400 focus:outline-none" data-index="4"></button>
-    </div>
+    <!-- 우측 화살표 -->
+    <button
+      id="nextBtn"
+      class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-neu_db-900/40 text-white rounded-full w-9 h-9 flex items-center justify-center hover:bg-neu_db-900/60 transition"
+    >
+      &#8594;
+    </button>
+
+    <!-- 도트 -->
+    <div id="dots" class="flex justify-center mt-6 space-x-2"></div>
   </div>
 
   <script>
-    const slider = document.getElementById("slider");
-    const dots = document.querySelectorAll(".dot");
-    const visibleCount = 2; // vi viser 2 kort ad gangen
-    const stepPercent = 100 / visibleCount;
+    (function () {
+      const track = document.getElementById("sliderTrack");
+      const prev = document.getElementById("prevBtn");
+      const next = document.getElementById("nextBtn");
+      const dotsWrap = document.getElementById("dots");
+      const cards = Array.from(track.children);
+      const totalCards = cards.length;
+      let index = 0;
 
-    dots.forEach((dot) => {
-      dot.addEventListener("click", () => {
-        const idx = Number(dot.dataset.index);
+      // 반응형: 화면 크기에 따라 보이는 카드 수
+      function getVisible() {
+        const w = window.innerWidth;
+        if (w >= 1024) return 3; // 데스크탑
+        if (w >= 768) return 2; // 아이패드
+        return 1; // 모바일
+      }
 
-        // Flyt slider med 50% pr. klik (én kortbredde)
-        slider.style.transform = `translateX(-${idx * stepPercent}%)`;
+      // 카드 폭 계산
+      function updateCardWidths() {
+        const visible = getVisible();
+        const gap = 32; // space-x-8
+        const containerWidth = document.getElementById("sliderViewport").offsetWidth;
+        const cardWidth = (containerWidth - gap * (visible - 1)) / visible;
+        cards.forEach((c) => (c.style.width = cardWidth + "px"));
+      }
 
-        // Resæt alle dots til grå, og sæt den aktive til gul
-        dots.forEach((d) => {
-          d.classList.remove("bg-acc_yel-500");
-          d.classList.add("bg-neu_db-400");
+      // 도트 고정 생성
+      function buildDots() {
+        dotsWrap.innerHTML = "";
+        for (let i = 0; i < totalCards; i++) {
+          const dot = document.createElement("button");
+          dot.className = "dot w-3 h-3 rounded-full bg-neu_db-400 transition";
+          dot.dataset.index = i;
+          dot.addEventListener("click", () => goTo(i));
+          dotsWrap.appendChild(dot);
+        }
+        updateDots();
+      }
+
+      // 도트 색상 업데이트
+      function updateDots() {
+        dotsWrap.querySelectorAll(".dot").forEach((d, i) => {
+          d.classList.toggle("bg-acc_yel-700", i === index);
+          d.classList.toggle("bg-neu_db-400", i !== index);
         });
-        dot.classList.remove("bg-neu_db-400");
-        dot.classList.add("bg-acc_yel-500");
-      });
-    });
+      }
+
+      // 슬라이드 이동 (루프 포함)
+      function goTo(i, animate = true) {
+        index = (i + totalCards) % totalCards;
+        const cardWidth = cards[0].offsetWidth + 32;
+        track.style.transitionDuration = animate ? "500ms" : "0ms";
+        track.style.transform = `translateX(-${index * cardWidth}px)`;
+        updateDots();
+      }
+
+      // 화살표 클릭
+      prev.addEventListener("click", () => goTo(index - 1));
+      next.addEventListener("click", () => goTo(index + 1));
+
+      // 초기 설정
+      function setup() {
+        updateCardWidths();
+        buildDots();
+        goTo(0, false);
+      }
+
+      setup();
+      window.addEventListener("resize", setup);
+    })();
   </script>
 </div>
